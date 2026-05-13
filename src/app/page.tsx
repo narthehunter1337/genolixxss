@@ -3,15 +3,21 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import './landing.css'
 
+/* ---- Deterministic pseudo-random for SSR hydration consistency ---- */
+function seededRandom(seed: number): number {
+  const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453
+  return x - Math.floor(x)
+}
+
 /* ---- Gold Particles Component ---- */
 function GoldParticles() {
   const particles = Array.from({ length: 20 }, (_, i) => ({
     id: i,
-    left: `${Math.random() * 100}%`,
-    size: Math.random() * 2 + 1,
-    duration: Math.random() * 15 + 10,
-    delay: Math.random() * 15,
-    opacity: Math.random() * 0.3 + 0.1,
+    left: `${seededRandom(i) * 100}%`,
+    size: seededRandom(i + 20) * 2 + 1,
+    duration: seededRandom(i + 40) * 15 + 10,
+    delay: seededRandom(i + 60) * 15,
+    opacity: seededRandom(i + 80) * 0.3 + 0.1,
   }))
 
   return (
