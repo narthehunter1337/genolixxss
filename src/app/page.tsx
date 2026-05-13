@@ -37,8 +37,22 @@ export default function Home() {
           </h1>
           <p className="hero-subtitle">Школьный андеграунд. Треки о том, что рядом</p>
           <div className="hero-buttons">
-            <a href="#collab" className="btn btn-primary">Слушать</a>
-            <a href="#about" className="btn btn-outline">О нас</a>
+            <a
+              href="https://soundcloud.com/genotsyd"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary"
+            >
+              Слушать Genotsyd
+            </a>
+            <a
+              href="https://soundcloud.com/dumpling21"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline"
+            >
+              Слушать galixxss
+            </a>
           </div>
         </div>
         <div className="hero-scroll">
@@ -100,34 +114,28 @@ export default function Home() {
                 <div className="track-item">
                   <span className="track-num">01</span>
                   <span className="track-name">ТЫ МОЯ</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
                 <div className="track-item">
                   <span className="track-num">02</span>
                   <span className="track-name">Пустяки</span>
                   <span className="track-feat">feat. DEFENXCS</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
                 <div className="track-item">
                   <span className="track-num">03</span>
                   <span className="track-name">УБИВАЮ</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
                 <div className="track-item">
                   <span className="track-num">04</span>
                   <span className="track-name">КОГДА ВИЖУ ТЕБЯ</span>
                   <span className="track-feat">feat. galixxss</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
                 <div className="track-item">
                   <span className="track-num">05</span>
                   <span className="track-name">КРОВЬ ИЗ УШЕЙ (СПИД2)</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
                 <div className="track-item">
                   <span className="track-num">06</span>
                   <span className="track-name">ЧАЙНИК</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
               </div>
             </div>
@@ -157,23 +165,19 @@ export default function Home() {
                   <span className="track-num">01</span>
                   <span className="track-name">поцелуй</span>
                   <span className="track-feat">feat. Genotsyd</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
                 <div className="track-item">
                   <span className="track-num">02</span>
                   <span className="track-name">фонарь</span>
                   <span className="track-feat">feat. Genotsyd</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
                 <div className="track-item">
                   <span className="track-num">03</span>
                   <span className="track-name">СПИД2</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
                 <div className="track-item">
                   <span className="track-num">04</span>
                   <span className="track-name">спид1.mp3</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
               </div>
             </div>
@@ -198,19 +202,16 @@ export default function Home() {
                   <span className="track-num">01</span>
                   <span className="track-name">КОГДА ВИЖУ ТЕБЯ</span>
                   <span className="track-feat">Genotsyd feat. galixxss</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
                 <div className="track-item">
                   <span className="track-num">02</span>
                   <span className="track-name">поцелуй</span>
                   <span className="track-feat">galixxss feat. Genotsyd</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
                 <div className="track-item">
                   <span className="track-num">03</span>
                   <span className="track-name">фонарь</span>
                   <span className="track-feat">galixxss feat. Genotsyd</span>
-                  <button className="track-play" aria-label="Играть">▶</button>
                 </div>
               </div>
             </div>
@@ -253,11 +254,14 @@ export default function Home() {
       {/* ===== G. FOOTER ===== */}
       <footer className="footer" style={{ marginTop: 'auto' }}>
         <div className="footer-inner">
-          <p className="footer-copy">Сделано с душой. 2026</p>
+          <div className="footer-copy">
+            <span>Сделано с душой. 2026</span>
+            <span className="footer-made">made with narthehunter</span>
+          </div>
           <div className="footer-links">
             <a href="#hero" className="footer-link">Наверх</a>
             <a
-              href="https://soundcloud.com"
+              href="https://soundcloud.com/narthehunter"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-link"
@@ -265,7 +269,7 @@ export default function Home() {
               SoundCloud
             </a>
             <a
-              href="https://t.me"
+              href="https://t.me/uralslons"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-link"

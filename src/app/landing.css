@@ -533,9 +533,20 @@ html {
 }
 
 .footer-copy {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   font-size: 0.75rem;
   color: rgba(224, 220, 214, 0.25);
   letter-spacing: 0.05em;
+}
+
+.footer-made {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(200, 60, 60, 0.4);
 }
 
 .footer-links {
