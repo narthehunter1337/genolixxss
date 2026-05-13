@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import './landing.css'
 
@@ -84,7 +84,7 @@ function useInView(threshold = 0.15) {
   return { ref, inView }
 }
 
-/* ---- Section Wrapper with AnimatePresence ---- */
+/* ---- Section Wrapper ---- */
 function AnimatedSection({ children, className, id }: { children: React.ReactNode; className?: string; id?: string }) {
   const { ref, inView } = useInView(0.1)
   return (
@@ -118,8 +118,6 @@ function Navigation() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 60)
-
-      // Determine active section
       const sections = NAV_ITEMS.map((n) => n.href.replace('#', ''))
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i])
@@ -170,7 +168,6 @@ function Navigation() {
         </button>
       </motion.nav>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -200,6 +197,105 @@ function Navigation() {
   )
 }
 
+/* ---- Photo Data ---- */
+const ALL_PHOTOS = [
+  { src: '/photo1.jpg', alt: 'Genotsyd × galixxss — Вместе' },
+  { src: '/photo2.jpg', alt: 'Школьный класс' },
+  { src: '/photo3.jpg', alt: 'Genotsyd' },
+  { src: '/photo4.jpg', alt: 'galixxss' },
+  { src: '/photo5.jpg', alt: 'На улице' },
+  { src: '/photo6.jpg', alt: 'Совместное фото' },
+]
+
+/* ---- Zoom Icon SVG ---- */
+function ZoomIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      <line x1="11" y1="8" x2="11" y2="14" />
+      <line x1="8" y1="11" x2="14" y2="11" />
+    </svg>
+  )
+}
+
+/* ---- Lightbox Component ---- */
+function Lightbox({
+  src,
+  alt,
+  onClose,
+  onPrev,
+  onNext,
+  hasPrev,
+  hasNext,
+}: {
+  src: string
+  alt: string
+  onClose: () => void
+  onPrev: () => void
+  onNext: () => void
+  hasPrev: boolean
+  hasNext: boolean
+}) {
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft' && hasPrev) onPrev()
+      if (e.key === 'ArrowRight' && hasNext) onNext()
+    }
+    window.addEventListener('keydown', handleKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', handleKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose, onPrev, onNext, hasPrev, hasNext])
+
+  return (
+    <motion.div
+      className="lightbox-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="lightbox-content"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img src={src} alt={alt} className="lightbox-image" />
+      </motion.div>
+
+      <button className="lightbox-close" onClick={onClose} aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+      {hasPrev && (
+        <button className="lightbox-nav lightbox-prev" onClick={onPrev} aria-label="Предыдущее фото">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+      )}
+      {hasNext && (
+        <button className="lightbox-nav lightbox-next" onClick={onNext} aria-label="Следующее фото">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      )}
+    </motion.div>
+  )
+}
+
 /* ============================================================
    MAIN PAGE
    ============================================================ */
@@ -209,11 +305,45 @@ export default function Home() {
   const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
   const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+
+  const openLightbox = useCallback((photoSrc: string) => {
+    const idx = ALL_PHOTOS.findIndex((p) => p.src === photoSrc)
+    setLightboxIndex(idx >= 0 ? idx : 0)
+  }, [])
+
+  const closeLightbox = useCallback(() => setLightboxIndex(null), [])
+
+  const goPrev = useCallback(() => {
+    setLightboxIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : prev))
+  }, [])
+
+  const goNext = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev !== null && prev < ALL_PHOTOS.length - 1 ? prev + 1 : prev
+    )
+  }, [])
+
   return (
     <main className="landing-page" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <div className="noise" />
 
       <Navigation />
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <Lightbox
+            src={ALL_PHOTOS[lightboxIndex].src}
+            alt={ALL_PHOTOS[lightboxIndex].alt}
+            onClose={closeLightbox}
+            onPrev={goPrev}
+            onNext={goNext}
+            hasPrev={lightboxIndex > 0}
+            hasNext={lightboxIndex < ALL_PHOTOS.length - 1}
+          />
+        )}
+      </AnimatePresence>
 
       {/* ===== HERO ===== */}
       <section className="hero" id="hero" ref={heroRef}>
@@ -265,8 +395,9 @@ export default function Home() {
       <AnimatedSection className="section-dark" id="about">
         <div className="section-inner">
           <div className="about-grid">
-            <motion.div className="about-photo" variants={slideFromLeft} custom={0}>
+            <motion.div className="about-photo clickable-photo" variants={slideFromLeft} custom={0} onClick={() => openLightbox('/photo2.jpg')}>
               <img src="/photo2.jpg" alt="О нас" />
+              <div className="photo-zoom-icon"><ZoomIcon /></div>
             </motion.div>
             <div>
               <motion.span className="sec-label" variants={fadeUp} custom={0.1}>О нас</motion.span>
@@ -297,8 +428,9 @@ export default function Home() {
       <AnimatedSection id="genotsyd">
         <div className="section-inner">
           <div className="artist-grid">
-            <motion.div className="artist-photo" variants={slideFromLeft} custom={0}>
+            <motion.div className="artist-photo clickable-photo" variants={slideFromLeft} custom={0} onClick={() => openLightbox('/photo3.jpg')}>
               <img src="/photo3.jpg" alt="Genotsyd" />
+              <div className="photo-zoom-icon"><ZoomIcon /></div>
             </motion.div>
             <div>
               <motion.span className="sec-label" variants={fadeUp} custom={0.1}>Исполнитель</motion.span>
@@ -334,8 +466,9 @@ export default function Home() {
       <AnimatedSection className="section-dark" id="galixxss">
         <div className="section-inner">
           <div className="artist-grid" style={{ direction: 'rtl' }}>
-            <motion.div className="artist-photo" variants={slideFromRight} custom={0} style={{ direction: 'ltr' }}>
+            <motion.div className="artist-photo clickable-photo" variants={slideFromRight} custom={0} style={{ direction: 'ltr' }} onClick={() => openLightbox('/photo4.jpg')}>
               <img src="/photo4.jpg" alt="galixxss" />
+              <div className="photo-zoom-icon"><ZoomIcon /></div>
             </motion.div>
             <div style={{ direction: 'ltr' }}>
               <motion.span className="sec-label" variants={fadeUp} custom={0.1}>Исполнитель</motion.span>
@@ -390,8 +523,9 @@ export default function Home() {
                 ))}
               </motion.div>
             </div>
-            <motion.div className="collab-photo" variants={slideFromRight} custom={0.1}>
+            <motion.div className="collab-photo clickable-photo" variants={slideFromRight} custom={0.1} onClick={() => openLightbox('/photo6.jpg')}>
               <img src="/photo6.jpg" alt="Совместные треки" />
+              <div className="photo-zoom-icon"><ZoomIcon /></div>
             </motion.div>
           </div>
         </div>
@@ -417,8 +551,10 @@ export default function Home() {
                 className={`gallery-item ${item.cls}`}
                 variants={scaleIn}
                 custom={0.15 + i * 0.08}
+                onClick={() => openLightbox(item.src)}
               >
                 <img src={item.src} alt={item.alt} />
+                <div className="gallery-zoom-icon"><ZoomIcon /></div>
               </motion.div>
             ))}
           </div>
