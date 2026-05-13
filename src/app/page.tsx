@@ -3,26 +3,34 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import './landing.css'
 
-/* ---- Deterministic pseudo-random for SSR hydration consistency ---- */
-function seededRandom(seed: number): number {
-  const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453
-  return x - Math.floor(x)
-}
+/* ---- Gold Particles — hardcoded to guarantee SSR/client hydration match ---- */
+const PARTICLES = [
+  { id: 0, left: '12.5%', size: 1.4, duration: 14, delay: 2, opacity: 0.18 },
+  { id: 1, left: '28.3%', size: 2.1, duration: 18, delay: 7, opacity: 0.25 },
+  { id: 2, left: '45.7%', size: 1.8, duration: 11, delay: 0, opacity: 0.12 },
+  { id: 3, left: '63.2%', size: 1.2, duration: 22, delay: 12, opacity: 0.3 },
+  { id: 4, left: '81.9%', size: 2.6, duration: 16, delay: 5, opacity: 0.2 },
+  { id: 5, left: '5.4%', size: 1.9, duration: 20, delay: 9, opacity: 0.35 },
+  { id: 6, left: '37.1%', size: 1.1, duration: 13, delay: 14, opacity: 0.15 },
+  { id: 7, left: '52.8%', size: 2.3, duration: 17, delay: 3, opacity: 0.28 },
+  { id: 8, left: '74.6%', size: 1.5, duration: 24, delay: 11, opacity: 0.1 },
+  { id: 9, left: '91.3%', size: 1.7, duration: 12, delay: 8, opacity: 0.22 },
+  { id: 10, left: '18.7%', size: 2.8, duration: 19, delay: 1, opacity: 0.32 },
+  { id: 11, left: '33.5%', size: 1.3, duration: 15, delay: 6, opacity: 0.17 },
+  { id: 12, left: '48.2%', size: 2.0, duration: 21, delay: 13, opacity: 0.26 },
+  { id: 13, left: '66.9%', size: 1.6, duration: 10, delay: 4, opacity: 0.14 },
+  { id: 14, left: '85.4%', size: 2.4, duration: 23, delay: 10, opacity: 0.38 },
+  { id: 15, left: '9.1%', size: 1.0, duration: 16, delay: 15, opacity: 0.11 },
+  { id: 16, left: '22.6%', size: 2.2, duration: 14, delay: 2, opacity: 0.29 },
+  { id: 17, left: '57.3%', size: 1.8, duration: 18, delay: 7, opacity: 0.19 },
+  { id: 18, left: '70.8%', size: 1.4, duration: 25, delay: 0, opacity: 0.36 },
+  { id: 19, left: '95.2%', size: 2.7, duration: 11, delay: 9, opacity: 0.23 },
+] as const
 
-/* ---- Gold Particles Component ---- */
 function GoldParticles() {
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    left: `${seededRandom(i) * 100}%`,
-    size: seededRandom(i + 20) * 2 + 1,
-    duration: seededRandom(i + 40) * 15 + 10,
-    delay: seededRandom(i + 60) * 15,
-    opacity: seededRandom(i + 80) * 0.3 + 0.1,
-  }))
-
   return (
     <div className="gold-particles">
-      {particles.map((p) => (
+      {PARTICLES.map((p) => (
         <div
           key={p.id}
           className="gold-particle"
