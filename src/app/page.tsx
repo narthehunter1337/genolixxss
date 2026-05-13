@@ -84,7 +84,7 @@ export default function Home() {
           <div className="artist-grid">
             <div>
               <div className="artist-photo reveal">
-                <img src="/photo4.jpg" alt="Genotsyd" />
+                <img src="/photo3.jpg" alt="Genotsyd" />
               </div>
             </div>
             <div>
@@ -141,7 +141,7 @@ export default function Home() {
           <div className="artist-grid" style={{ direction: 'rtl' }}>
             <div style={{ direction: 'ltr' }}>
               <div className="artist-photo reveal">
-                <img src="/photo3.jpg" alt="galixxss" />
+                <img src="/photo4.jpg" alt="galixxss" />
               </div>
             </div>
             <div style={{ direction: 'ltr' }}>
