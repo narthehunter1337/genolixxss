@@ -1,0 +1,1191 @@
+/* ============================================================
+   GALIXS × GENOTSYD — Landing Page Styles
+   A collision of cosmic cold and terrestrial heat
+   ============================================================ */
+
+/* ---- Smooth scrolling ---- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ---- Selection styling ---- */
+.landing-page ::selection {
+  background: rgba(139, 0, 224, 0.4);
+  color: #ffffff;
+}
+
+/* ---- Scrollbar styling ---- */
+.landing-page ::-webkit-scrollbar {
+  width: 6px;
+}
+
+.landing-page ::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+.landing-page ::-webkit-scrollbar-thumb {
+  background: rgba(139, 0, 224, 0.3);
+  border-radius: 3px;
+}
+
+.landing-page ::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 0, 224, 0.5);
+}
+
+/* ---- Base & Reset ---- */
+.landing-page {
+  position: relative;
+  overflow-x: hidden;
+  cursor: none;
+  background: #050505;
+  color: #e0e0ff;
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.landing-page * {
+  cursor: none;
+}
+
+.landing-page a,
+.landing-page button {
+  cursor: none;
+}
+
+/* ---- Custom Cursor ---- */
+.custom-cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.2s ease;
+  opacity: 0;
+  transform: translate(0, 0);
+  mix-blend-mode: screen;
+}
+
+.custom-cursor.visible {
+  opacity: 1;
+}
+
+/* ---- Noise Overlay (shared) ---- */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  z-index: 2;
+}
+
+/* ============================================================
+   A. HERO / SPLIT-SCREEN
+   ============================================================ */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+.hero-half {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ---- GALIXS Side ---- */
+.hero-galixs {
+  background: linear-gradient(
+    160deg,
+    #0a0a1a 0%,
+    #0d0d2b 30%,
+    #1a0033 60%,
+    #0a0a1a 100%
+  );
+}
+
+.hero-galixs::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 240, 255, 0.08) 0%,
+    rgba(74, 0, 224, 0.12) 40%,
+    transparent 70%
+  );
+  top: 20%;
+  left: 10%;
+  filter: blur(60px);
+  animation: float-orb 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+.hero-galixs::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(74, 0, 224, 0.15) 0%,
+    rgba(0, 240, 255, 0.05) 50%,
+    transparent 70%
+  );
+  bottom: 15%;
+  right: 5%;
+  filter: blur(40px);
+  animation: float-orb 10s ease-in-out infinite reverse;
+  z-index: 0;
+}
+
+/* Stars for GALIXS side */
+.galixs-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ---- GENOTSYD Side ---- */
+.hero-genotsyd {
+  background: linear-gradient(
+    200deg,
+    #1a0505 0%,
+    #2a0800 30%,
+    #1a0505 60%,
+    #0d0200 100%
+  );
+}
+
+.hero-genotsyd::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 42, 0, 0.1) 0%,
+    rgba(139, 0, 0, 0.08) 40%,
+    transparent 70%
+  );
+  bottom: 10%;
+  right: 10%;
+  filter: blur(50px);
+  animation: float-smoke 7s ease-in-out infinite;
+  z-index: 0;
+}
+
+.hero-genotsyd::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 600px;
+  background: radial-gradient(
+    ellipse,
+    rgba(255, 170, 0, 0.06) 0%,
+    rgba(139, 0, 0, 0.1) 50%,
+    transparent 70%
+  );
+  top: 5%;
+  left: 15%;
+  filter: blur(60px);
+  animation: float-smoke 9s ease-in-out infinite reverse;
+  z-index: 0;
+}
+
+/* ---- Hero Content ---- */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 2rem;
+  width: 100%;
+}
+
+.hero-name {
+  font-size: clamp(3rem, 10vw, 8rem);
+  line-height: 1;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 3;
+}
+
+.galixs-name {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  color: #e0e0ff;
+  text-shadow:
+    0 0 40px rgba(0, 240, 255, 0.4),
+    0 0 80px rgba(74, 0, 224, 0.2);
+  font-weight: 900;
+}
+
+.genotsyd-name {
+  font-family: var(--font-rubik-mono), 'Rubik Mono One', sans-serif;
+  color: #ffaa00;
+  text-shadow:
+    0 0 40px rgba(255, 42, 0, 0.4),
+    0 0 80px rgba(139, 0, 0, 0.3);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.hero-tagline {
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 3;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.galixs-tagline {
+  color: rgba(0, 240, 255, 0.7);
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+}
+
+.genotsyd-tagline {
+  color: rgba(255, 170, 0, 0.8);
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+}
+
+/* ---- VS Symbol ---- */
+.vs-symbol {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  color: #ffffff;
+  text-shadow:
+    0 0 20px rgba(0, 240, 255, 0.5),
+    0 0 40px rgba(255, 42, 0, 0.5),
+    0 0 60px rgba(139, 0, 224, 0.3);
+  animation: vs-pulse 3s ease-in-out infinite;
+  transition: transform 0.4s ease, text-shadow 0.4s ease;
+  user-select: none;
+}
+
+.vs-symbol:hover {
+  transform: translate(-50%, -50%) rotate(180deg) scale(1.2);
+  text-shadow:
+    0 0 30px rgba(0, 240, 255, 0.8),
+    0 0 60px rgba(255, 42, 0, 0.8),
+    0 0 100px rgba(139, 0, 224, 0.6),
+    0 0 150px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes vs-pulse {
+  0%, 100% {
+    opacity: 0.8;
+    text-shadow:
+      0 0 20px rgba(0, 240, 255, 0.5),
+      0 0 40px rgba(255, 42, 0, 0.5),
+      0 0 60px rgba(139, 0, 224, 0.3);
+  }
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 30px rgba(0, 240, 255, 0.7),
+      0 0 60px rgba(255, 42, 0, 0.7),
+      0 0 90px rgba(139, 0, 224, 0.5);
+  }
+}
+
+/* ---- Center Divider Line ---- */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.15) 80%,
+    transparent 100%
+  );
+  z-index: 9;
+}
+
+/* ---- Scroll Indicator ---- */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  animation: scroll-bounce 2.5s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.4; }
+  50% { transform: translateX(-50%) translateY(8px); opacity: 0.8; }
+}
+
+/* ---- Hero Background Abstract Art ---- */
+.galixs-art {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.galixs-art::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background:
+    radial-gradient(2px 2px at 20% 30%, rgba(0, 240, 255, 0.5), transparent),
+    radial-gradient(2px 2px at 40% 70%, rgba(0, 240, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 60% 20%, rgba(224, 224, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 80% 50%, rgba(74, 0, 224, 0.3), transparent),
+    radial-gradient(2px 2px at 10% 80%, rgba(0, 240, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 70% 90%, rgba(224, 224, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 50% 10%, rgba(0, 240, 255, 0.2), transparent),
+    radial-gradient(1px 1px at 90% 40%, rgba(74, 0, 224, 0.4), transparent);
+  animation: star-drift 20s linear infinite;
+}
+
+.genotsyd-art {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.genotsyd-art::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(139, 0, 0, 0.03) 2px,
+      rgba(139, 0, 0, 0.03) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 40px,
+      rgba(255, 42, 0, 0.02) 40px,
+      rgba(255, 42, 0, 0.02) 41px
+    );
+  animation: static-flicker 0.15s steps(2) infinite;
+}
+
+.genotsyd-art::after {
+  content: '';
+  position: absolute;
+  width: 150%;
+  height: 150%;
+  top: -25%;
+  left: -25%;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(255, 42, 0, 0.04), transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(255, 170, 0, 0.03), transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(139, 0, 0, 0.05), transparent 40%);
+  animation: smoke-drift 12s ease-in-out infinite;
+}
+
+/* ============================================================
+   B. COLLISION SECTION
+   ============================================================ */
+.collision-section {
+  position: relative;
+  background: #050505;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+}
+
+.collision-content {
+  max-width: 700px;
+  text-align: center;
+}
+
+.collision-divider {
+  width: 60px;
+  height: 1px;
+  margin: 2rem auto;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 240, 255, 0.5),
+    rgba(139, 0, 224, 0.8),
+    rgba(255, 42, 0, 0.5)
+  );
+}
+
+.collision-text {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: rgba(224, 224, 255, 0.8);
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   C. GALIXS PROFILE SECTION
+   ============================================================ */
+.galixs-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 6rem 2rem;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    #0a0a1a 0%,
+    #0d0528 20%,
+    #150a30 40%,
+    #0a0a1a 60%,
+    #051525 80%,
+    #0a0a1a 100%
+  );
+  background-size: 400% 400%;
+  animation: nebula 20s ease infinite;
+}
+
+.galixs-section::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(74, 0, 224, 0.08) 0%,
+    rgba(0, 240, 255, 0.04) 40%,
+    transparent 70%
+  );
+  top: 10%;
+  right: -10%;
+  filter: blur(80px);
+  animation: float-orb 12s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes nebula {
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 100% 0%; }
+  50% { background-position: 100% 100%; }
+  75% { background-position: 0% 100%; }
+}
+
+.section-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 1;
+  margin-bottom: 2rem;
+  letter-spacing: 0.08em;
+}
+
+.galixs-title {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  color: #00f0ff;
+  text-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+  font-weight: 900;
+}
+
+.genotsyd-title {
+  font-family: var(--font-rubik-mono), 'Rubik Mono One', sans-serif;
+  color: #ff2a00;
+  text-shadow: 0 0 30px rgba(255, 42, 0, 0.3);
+  font-weight: 400;
+}
+
+/* ---- Glassmorphism Cards ---- */
+.glass-card {
+  background: rgba(74, 0, 224, 0.08);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 240, 255, 0.4),
+    transparent
+  );
+}
+
+.galixs-bio p {
+  color: rgba(224, 224, 255, 0.85);
+  margin-bottom: 1.5rem;
+}
+
+.galixs-quote {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(0, 240, 255, 0.7);
+  border-left: 2px solid rgba(0, 240, 255, 0.4);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0 0;
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+/* ---- Discography ---- */
+.discography {
+  margin-top: 3rem;
+}
+
+.discography-title {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0, 240, 255, 0.6);
+  margin-bottom: 1.5rem;
+}
+
+.genotsyd-disc-title {
+  font-family: var(--font-rubik-mono), 'Rubik Mono One', sans-serif;
+  color: rgba(255, 170, 0, 0.7);
+}
+
+.discography-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.disc-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem;
+}
+
+.disc-year {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(0, 240, 255, 0.5);
+  letter-spacing: 0.2em;
+}
+
+.genotsyd-section .disc-year {
+  font-family: var(--font-rubik-mono), 'Rubik Mono One', sans-serif;
+  color: rgba(255, 170, 0, 0.6);
+}
+
+.disc-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e0e0ff;
+}
+
+.disc-type {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(224, 224, 255, 0.4);
+}
+
+/* ============================================================
+   C2. GENOTSYD PROFILE SECTION
+   ============================================================ */
+.genotsyd-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 6rem 2rem;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #1a0505 0%,
+    #0d0200 40%,
+    #1a0505 70%,
+    #0a0000 100%
+  );
+}
+
+/* TV Static overlay */
+.genotsyd-section::after {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      rgba(255, 255, 255, 0.015) 1px,
+      rgba(255, 255, 255, 0.015) 2px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 42, 0, 0.01) 2px,
+      rgba(255, 42, 0, 0.01) 3px
+    );
+  animation: tv-static 0.2s steps(8) infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---- Brutalist Blocks ---- */
+.brutal-block {
+  background: rgba(139, 0, 0, 0.12);
+  border: 2px solid rgba(255, 42, 0, 0.35);
+  border-radius: 0;
+  padding: 2rem;
+  position: relative;
+}
+
+.brutal-block::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 42, 0, 0.6);
+}
+
+.genotsyd-bio p {
+  color: rgba(255, 200, 150, 0.85);
+  margin-bottom: 1.5rem;
+}
+
+.genotsyd-quote {
+  font-family: var(--font-rubik-mono), 'Rubik Mono One', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(255, 170, 0, 0.8);
+  border-left: 3px solid rgba(255, 42, 0, 0.6);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0 0;
+  font-style: normal;
+  letter-spacing: 0.02em;
+}
+
+/* Distressed text effect */
+.genotsyd-section .disc-title {
+  color: rgba(255, 170, 0, 0.9);
+  text-shadow: 1px 1px 0 rgba(255, 42, 0, 0.2);
+}
+
+.genotsyd-section .disc-type {
+  color: rgba(255, 170, 0, 0.4);
+}
+
+/* ============================================================
+   D. MERGED REALITY / COLLAB SECTION
+   ============================================================ */
+.collab-section {
+  position: relative;
+  min-height: 100vh;
+  padding: 6rem 2rem;
+  overflow: hidden;
+  background: #050505;
+}
+
+.collab-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(0, 240, 255, 0.05), transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(255, 42, 0, 0.05), transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(139, 0, 224, 0.08), transparent 40%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.collab-section .section-inner {
+  text-align: center;
+}
+
+.collab-title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  background: linear-gradient(
+    135deg,
+    #00f0ff 0%,
+    #8b00ff 40%,
+    #ff0055 70%,
+    #ff2a00 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-weight: 900;
+}
+
+.collab-subtitle {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  color: rgba(224, 224, 255, 0.6);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.collab-date {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 0, 85, 0.7);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+.collab-tracks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+.track-preview {
+  padding: 1.5rem;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.track-preview:hover {
+  transform: translateY(-4px);
+}
+
+.track-preview.brutal-hybrid {
+  background: rgba(45, 0, 54, 0.15);
+  border: 1px solid rgba(139, 0, 224, 0.3);
+  border-radius: 8px;
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+}
+
+.track-preview:hover {
+  border-color: rgba(255, 0, 85, 0.5);
+}
+
+.track-preview h4 {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: #00f0ff;
+  margin-bottom: 0.75rem;
+}
+
+.lyrics-snippet {
+  font-family: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(224, 224, 255, 0.6);
+  font-style: italic;
+}
+
+/* ---- Pre-Save Button ---- */
+.pre-save-btn {
+  position: relative;
+  display: inline-block;
+  padding: 1rem 3rem;
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 240, 255, 0.2),
+    rgba(139, 0, 224, 0.3),
+    rgba(255, 0, 85, 0.2)
+  );
+  border: 1px solid rgba(255, 0, 85, 0.5);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow:
+    0 0 20px rgba(139, 0, 224, 0.2),
+    0 0 40px rgba(0, 240, 255, 0.1),
+    inset 0 0 20px rgba(139, 0, 224, 0.1);
+}
+
+.pre-save-btn:hover {
+  border-color: rgba(255, 0, 85, 0.8);
+  box-shadow:
+    0 0 30px rgba(139, 0, 224, 0.4),
+    0 0 60px rgba(0, 240, 255, 0.2),
+    0 0 80px rgba(255, 0, 85, 0.2),
+    inset 0 0 30px rgba(139, 0, 224, 0.15);
+  transform: scale(1.05);
+}
+
+.pre-save-btn .ripple-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.pre-save-btn.ripple .ripple-effect {
+  animation: ripple-expand 0.6s ease-out forwards;
+}
+
+@keyframes ripple-expand {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 0.6;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+.pre-save-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================================
+   E. VISUALIZER SECTION
+   ============================================================ */
+.visualizer-section {
+  position: relative;
+  min-height: 60vh;
+  padding: 6rem 2rem;
+  background: #050505;
+  overflow: hidden;
+}
+
+.visualizer-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #050505,
+    rgba(10, 10, 26, 0.5),
+    #050505
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+.visualizer-section .section-inner {
+  text-align: center;
+}
+
+.visualizer-title {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(
+    90deg,
+    #00f0ff,
+    #8b00ff,
+    #ff2a00
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.visualizer-subtitle {
+  font-size: 0.85rem;
+  color: rgba(224, 224, 255, 0.4);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.visualizer-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 250px;
+  margin: 0 auto;
+  border: 1px solid rgba(139, 0, 224, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(5, 5, 5, 0.8);
+  z-index: 1;
+}
+
+.visualizer-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ============================================================
+   F. FOOTER
+   ============================================================ */
+.footer-section {
+  position: relative;
+  padding: 3rem 2rem;
+  background: #030303;
+  border-top: 1px solid rgba(139, 0, 224, 0.1);
+  z-index: 2;
+  margin-top: auto;
+}
+
+.footer-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-link {
+  font-size: 1.5rem;
+  color: rgba(224, 224, 255, 0.3);
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+.social-link:hover {
+  color: #8b00ff;
+  text-shadow: 0 0 15px rgba(139, 0, 224, 0.5);
+  transform: scale(1.2);
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(224, 224, 255, 0.25);
+  margin-bottom: 1rem;
+}
+
+.footer-cryptic {
+  font-family: var(--font-orbitron), 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: rgba(139, 0, 224, 0.4);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   FADE-UP ANIMATIONS (Intersection Observer driven)
+   ============================================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   UTILITY ANIMATIONS
+   ============================================================ */
+@keyframes float-orb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(20px, -30px) scale(1.05); }
+  50% { transform: translate(-10px, 20px) scale(0.95); }
+  75% { transform: translate(15px, 10px) scale(1.02); }
+}
+
+@keyframes float-smoke {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-20px, 15px) scale(1.03); }
+  66% { transform: translate(15px, -20px) scale(0.97); }
+}
+
+@keyframes star-drift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-20px, -10px); }
+}
+
+@keyframes static-flicker {
+  0% { opacity: 0.5; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.5; }
+}
+
+@keyframes smoke-drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-15px, 10px) rotate(1deg); }
+  50% { transform: translate(10px, -15px) rotate(-0.5deg); }
+  75% { transform: translate(-10px, -5px) rotate(0.5deg); }
+}
+
+@keyframes tv-static {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  20% { transform: translate(-15%, 5%); }
+  30% { transform: translate(7%, -25%); }
+  40% { transform: translate(20%, 25%); }
+  50% { transform: translate(-25%, 10%); }
+  60% { transform: translate(15%, 5%); }
+  70% { transform: translate(0%, 15%); }
+  80% { transform: translate(25%, 35%); }
+  90% { transform: translate(-10%, 10%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile (<768px)
+   ============================================================ */
+@media (max-width: 767px) {
+  .hero-section {
+    flex-direction: column;
+  }
+
+  .hero-half {
+    flex: none;
+    height: 50vh;
+  }
+
+  .hero-section::after {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.15) 80%,
+      transparent 100%
+    );
+  }
+
+  .vs-symbol {
+    top: 50%;
+    left: 50%;
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 12vw, 5rem);
+  }
+
+  .hero-tagline {
+    font-size: clamp(0.65rem, 2.5vw, 0.85rem);
+  }
+
+  .scroll-indicator {
+    bottom: 1rem;
+  }
+
+  .galixs-section,
+  .genotsyd-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .discography-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .collab-tracks {
+    grid-template-columns: 1fr;
+  }
+
+  .visualizer-container {
+    height: 180px;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+
+  .custom-cursor {
+    display: none;
+  }
+
+  .landing-page {
+    cursor: auto;
+  }
+
+  .landing-page * {
+    cursor: auto;
+  }
+}
+
+/* ---- Tablet adjustments ---- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero-name {
+    font-size: clamp(3rem, 8vw, 6rem);
+  }
+
+  .discography-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
