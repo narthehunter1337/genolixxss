@@ -110,10 +110,11 @@ const NAV_ITEMS = [
   { label: 'Галерея', href: '#gallery' },
 ]
 
-function Navigation() {
+function Navigation({ onSecretTrigger }: { onSecretTrigger: () => void }) {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
   const [mobileOpen, setMobileOpen] = useState(false)
+  const clickTimesRef = useRef<number[]>([])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -140,6 +141,21 @@ function Navigation() {
     el?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const handleLogoSpanClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const now = Date.now()
+    const times = clickTimesRef.current.filter((t) => now - t < 4000)
+    times.push(now)
+    clickTimesRef.current = times
+    if (times.length >= 7) {
+      clickTimesRef.current = []
+      onSecretTrigger()
+    } else {
+      handleClick('#hero')
+    }
+  }
+
   return (
     <>
       <motion.nav
@@ -149,7 +165,7 @@ function Navigation() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
       >
         <a href="#hero" className="nav-logo" onClick={(e) => { e.preventDefault(); handleClick('#hero') }}>
-          GENOTSYD <span>×</span> GALIXXSS
+          GENOTSYD <span onClick={handleLogoSpanClick}>×</span> GALIXXSS
         </a>
         <div className="nav-links">
           {NAV_ITEMS.map((item) => (
@@ -271,7 +287,7 @@ function Lightbox({
         <img src={src} alt={alt} className="lightbox-image" />
       </motion.div>
 
-      <button className="lightbox-close" onClick={onClose} aria-label="Закрыть">
+      <button className="lightbox-close" onClick={(e) => { e.stopPropagation(); onClose() }} aria-label="Закрыть">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
@@ -279,19 +295,281 @@ function Lightbox({
       </button>
 
       {hasPrev && (
-        <button className="lightbox-nav lightbox-prev" onClick={onPrev} aria-label="Предыдущее фото">
+        <button className="lightbox-nav lightbox-prev" onClick={(e) => { e.stopPropagation(); onPrev() }} aria-label="Предыдущее фото">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="15 18 9 12 15 6" />
           </svg>
         </button>
       )}
       {hasNext && (
-        <button className="lightbox-nav lightbox-next" onClick={onNext} aria-label="Следующее фото">
+        <button className="lightbox-nav lightbox-next" onClick={(e) => { e.stopPropagation(); onNext() }} aria-label="Следующее фото">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="9 18 15 12 9 6" />
           </svg>
         </button>
       )}
+
+      <div className="lightbox-counter">
+        {(ALL_PHOTOS.findIndex((p) => p.src === src) + 1)} / {ALL_PHOTOS.length}
+      </div>
+    </motion.div>
+  )
+}
+
+/* ---- Secret Code Modal ---- */
+const SECRET_CODE = 'школа'
+
+function CodeModal({ onSuccess, onClose }: { onSuccess: () => void; onClose: () => void }) {
+  const [code, setCode] = useState('')
+  const [error, setError] = useState(false)
+  const [shake, setShake] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    inputRef.current?.focus()
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [onClose])
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (code.toLowerCase().trim() === SECRET_CODE) {
+      onSuccess()
+    } else {
+      setError(true)
+      setShake(true)
+      setTimeout(() => setShake(false), 500)
+      setTimeout(() => setError(false), 2000)
+    }
+  }
+
+  return (
+    <motion.div
+      className="secret-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className={`secret-modal${shake ? ' secret-shake' : ''}`}
+        initial={{ opacity: 0, scale: 0.9, y: 30 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.9, y: 30 }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="secret-modal-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        </div>
+        <h3 className="secret-modal-title">Доступ ограничен</h3>
+        <p className="secret-modal-desc">Введите код, чтобы попасть в скрытую секцию</p>
+        <form onSubmit={handleSubmit} className="secret-modal-form">
+          <input
+            ref={inputRef}
+            type="text"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            placeholder="Введите код..."
+            className={`secret-input${error ? ' secret-input-error' : ''}`}
+            autoComplete="off"
+          />
+          <button type="submit" className="secret-submit">Войти</button>
+        </form>
+        {error && <p className="secret-error-text">Неверный код</p>}
+        <button className="secret-modal-close" onClick={onClose} aria-label="Закрыть">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </motion.div>
+    </motion.div>
+  )
+}
+
+/* ---- Secret Page ---- */
+function SecretPage({ onClose }: { onClose: () => void }) {
+  const [glitchText, setGlitchText] = useState(false)
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    const interval = setInterval(() => {
+      setGlitchText(true)
+      setTimeout(() => setGlitchText(false), 150)
+    }, 4000)
+    return () => {
+      document.body.style.overflow = ''
+      clearInterval(interval)
+    }
+  }, [])
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [onClose])
+
+  return (
+    <motion.div
+      className="secret-page-overlay"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="secret-page-noise" />
+      <div className="secret-page-scanlines" />
+
+      <button className="secret-page-close" onClick={onClose} aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+
+      <div className="secret-page-content">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="secret-badge">СЕКРЕТНАЯ СЕКЦИЯ</div>
+        </motion.div>
+
+        <motion.h1
+          className={`secret-title${glitchText ? ' glitch-active' : ''}`}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          ТЫ НАШЁЛ <span>ЭТО</span>
+        </motion.h1>
+
+        <motion.p
+          className="secret-subtitle"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.8 }}
+        >
+          Только избранные попадают сюда. Добро пожаловать в андеграунд.
+        </motion.p>
+
+        <motion.div
+          className="secret-divider"
+          initial={{ width: 0 }}
+          animate={{ width: 80 }}
+          transition={{ delay: 0.9, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        />
+
+        {/* Unreleased tracks */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h2 className="secret-section-title">Неизданное</h2>
+          <p className="secret-section-desc">Треки, которые никогда не выйдут. Только здесь.</p>
+          <div className="secret-tracks">
+            {[
+              { num: '??', name: 'коридоры', status: 'демо' },
+              { num: '??', name: 'окно выходного дня', status: 'черновик' },
+              { num: '??', name: 'тишина.mp3', status: 'фрагмент' },
+              { num: '??', name: 'последний звонок', status: 'демо' },
+              { num: '??', name: 'красные розы II', status: 'идея' },
+            ].map((track) => (
+              <div key={track.name} className="secret-track-item">
+                <span className="secret-track-num">{track.num}</span>
+                <span className="secret-track-name">{track.name}</span>
+                <span className={`secret-track-status status-${track.status}`}>{track.status}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Secret message */}
+        <motion.div
+          className="secret-message-box"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.4, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h2 className="secret-section-title">Послание</h2>
+          <div className="secret-message-text">
+            <p>Если ты здесь — значит, ты один из нас.</p>
+            <p>Школа — это временно. Музыка — навсегда.</p>
+            <p>Каждый трек — это чья-то история. Может, твоя.</p>
+            <p className="secret-message-sig">— G × G</p>
+          </div>
+        </motion.div>
+
+        {/* Stats */}
+        <motion.div
+          className="secret-stats"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.7, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h2 className="secret-section-title">Статистика проекта</h2>
+          <div className="secret-stats-grid">
+            <div className="secret-stat">
+              <span className="secret-stat-value">13</span>
+              <span className="secret-stat-label">треков</span>
+            </div>
+            <div className="secret-stat">
+              <span className="secret-stat-value">3</span>
+              <span className="secret-stat-label">совместных</span>
+            </div>
+            <div className="secret-stat">
+              <span className="secret-stat-value">1</span>
+              <span className="secret-stat-label">школа</span>
+            </div>
+            <div className="secret-stat">
+              <span className="secret-stat-value">∞</span>
+              <span className="secret-stat-label">идей</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Hidden photo grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.0, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h2 className="secret-section-title">Скрытые кадры</h2>
+          <div className="secret-gallery">
+            {[
+              { src: '/photo3.jpg', alt: 'Genotsyd' },
+              { src: '/photo6.jpg', alt: 'Вместе' },
+              { src: '/photo4.jpg', alt: 'galixxss' },
+            ].map((item) => (
+              <div key={item.src} className="secret-gallery-item">
+                <img src={item.src} alt={item.alt} />
+                <div className="secret-gallery-vignette" />
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="secret-footer-note"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.5, duration: 1 }}
+        >
+          Ты знаешь код. Ты знаешь правду. Не выдавай секрет.
+        </motion.div>
+      </div>
     </motion.div>
   )
 }
@@ -306,6 +584,8 @@ export default function Home() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const [showCodeModal, setShowCodeModal] = useState(false)
+  const [showSecretPage, setShowSecretPage] = useState(false)
 
   const openLightbox = useCallback((photoSrc: string) => {
     const idx = ALL_PHOTOS.findIndex((p) => p.src === photoSrc)
@@ -324,11 +604,20 @@ export default function Home() {
     )
   }, [])
 
+  const handleSecretTrigger = useCallback(() => {
+    setShowCodeModal(true)
+  }, [])
+
+  const handleCodeSuccess = useCallback(() => {
+    setShowCodeModal(false)
+    setShowSecretPage(true)
+  }, [])
+
   return (
     <main className="landing-page" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <div className="noise" />
 
-      <Navigation />
+      <Navigation onSecretTrigger={handleSecretTrigger} />
 
       {/* Lightbox */}
       <AnimatePresence>
@@ -342,6 +631,23 @@ export default function Home() {
             hasPrev={lightboxIndex > 0}
             hasNext={lightboxIndex < ALL_PHOTOS.length - 1}
           />
+        )}
+      </AnimatePresence>
+
+      {/* Secret Code Modal */}
+      <AnimatePresence>
+        {showCodeModal && (
+          <CodeModal
+            onSuccess={handleCodeSuccess}
+            onClose={() => setShowCodeModal(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Secret Page */}
+      <AnimatePresence>
+        {showSecretPage && (
+          <SecretPage onClose={() => setShowSecretPage(false)} />
         )}
       </AnimatePresence>
 
