@@ -1,0 +1,16 @@
+meta:
+  environment: node
+  num_versions: 3
+
+build:
+  type: npm
+  command: npm ci && npm run build
+
+run:
+  type: node
+  command: node .next/standalone/server.js
+  port: 3000
+  env:
+    NODE_ENV: production
+    HOSTNAME: "0.0.0.0"
+    PORT: "3000"

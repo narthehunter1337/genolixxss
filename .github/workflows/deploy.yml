@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      NEXT_PUBLIC_BASE_PATH: /genolixss
+      NEXT_PUBLIC_BASE_PATH: /genolixxss
     steps:
       - name: Checkout
         uses: actions/checkout@v4
