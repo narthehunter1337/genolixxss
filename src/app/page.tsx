@@ -30,6 +30,7 @@ const ALL_TRACKS: Track[] = [
   { id: 'gal-02', name: 'фонарь', artist: 'galixxss', feat: 'Genotsyd', src: `${BP}/tracks/gal-02-fonar.mp3` },
   { id: 'gal-03', name: 'СПИД2', artist: 'galixxss', src: `${BP}/tracks/gal-03-spid2.mp3` },
   { id: 'gal-04', name: 'спид1.mp3', artist: 'galixxss', src: `${BP}/tracks/gal-04-spid1.mp3` },
+  { id: 'gal-05', name: 'БЕСТИАРИЙ', artist: 'galixxss', feat: 'Genotsyd', src: `${BP}/tracks/gal-05-bestiariy.mp3` },
 ]
 
 interface PlayerState {
@@ -435,7 +436,7 @@ function SecretPage({ onClose }: { onClose: () => void }) {
         </motion.div>
         <motion.div className="secret-stats" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.7, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
           <h2 className="secret-section-title">Статистика проекта</h2>
-          <div className="secret-stats-grid">{[{ v: '13', l: 'треков' }, { v: '3', l: 'совместных' }, { v: '1', l: 'школа' }, { v: '∞', l: 'идей' }].map((s) => (<div key={s.l} className="secret-stat"><span className="secret-stat-value">{s.v}</span><span className="secret-stat-label">{s.l}</span></div>))}</div>
+          <div className="secret-stats-grid">{[{ v: '14', l: 'треков' }, { v: '4', l: 'совместных' }, { v: '1', l: 'школа' }, { v: '∞', l: 'идей' }].map((s) => (<div key={s.l} className="secret-stat"><span className="secret-stat-value">{s.v}</span><span className="secret-stat-label">{s.l}</span></div>))}</div>
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.0, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
           <h2 className="secret-section-title">Скрытые кадры</h2>
@@ -660,6 +661,7 @@ export default function Home() {
                   <PlayableTrackItem trackId="gal-02" num="02" name="фонарь" feat="feat. Genotsyd" />
                   <PlayableTrackItem trackId="gal-03" num="03" name="СПИД2" />
                   <PlayableTrackItem trackId="gal-04" num="04" name="спид1.mp3" />
+                  <PlayableTrackItem trackId="gal-05" num="05" name="БЕСТИАРИЙ" feat="feat. Genotsyd" />
                 </motion.div>
               </div>
             </div>
@@ -679,6 +681,7 @@ export default function Home() {
                   <PlayableTrackItem trackId="gen-04" num="01" name="КОГДА ВИЖУ ТЕБЯ" feat="Genotsyd feat. galixxss" />
                   <PlayableTrackItem trackId="gal-01" num="02" name="поцелуй" feat="galixxss feat. Genotsyd" />
                   <PlayableTrackItem trackId="gal-02" num="03" name="фонарь" feat="galixxss feat. Genotsyd" />
+                  <PlayableTrackItem trackId="gal-05" num="04" name="БЕСТИАРИЙ" feat="galixxss feat. Genotsyd" />
                 </motion.div>
               </div>
               <motion.div className="collab-photo clickable-photo" variants={slideFromRight} custom={0.1} onClick={() => openLightbox(`${BP}/photo6.jpg`)}>
