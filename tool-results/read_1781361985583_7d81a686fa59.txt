@@ -1,0 +1,2002 @@
+     1→     1→<!DOCTYPE html>
+     2→     2→<html lang="ru">
+     3→     3→<head>
+     4→     4→  <meta charset="UTF-8">
+     5→     5→  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     6→     6→  <title>GENOTSYD × GALIXXSS</title>
+     7→     7→  <meta name="description" content="Официальный промо-сайт двух русскоязычных андеграунд-исполнителей — Genotsyd и galixxss. Школьный андеграунд, бунт и меланхолия.">
+     8→     8→  
+     9→     9→  <!-- Google Fonts -->
+    10→    10→  <link rel="preconnect" href="https://fonts.googleapis.com">
+    11→    11→  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    12→    12→  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400;500&family=Montserrat:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    13→    13→  
+    14→    14→  <style>
+    15→    15→    /* ==========================================
+    16→    16→       DESIGN SYSTEM & VARIABLES
+    17→    17→       ========================================== */
+    18→    18→    :root {
+    19→    19→      --bg-primary: #0a0a0a;
+    20→    20→      --bg-secondary: #111111;
+    21→    21→      --accent: #c9a84c; /* Dirty gold / Champagne */
+    22→    22→      --accent-rgb: 201, 168, 76;
+    23→    23→      --text-primary: #ffffff;
+    24→    24→      --text-secondary: rgba(255, 255, 255, 0.5);
+    25→    25→      --border-color: rgba(255, 255, 255, 0.1);
+    26→    26→      
+    27→    27→      --font-serif: 'Playfair Display', serif;
+    28→    28→      --font-serif-alt: 'Cormorant Garamond', serif;
+    29→    29→      --font-sans-alt: 'Montserrat', sans-serif;
+    30→    30→      --font-sans: 'Inter', sans-serif;
+    31→    31→    }
+    32→    32→
+    33→    33→    /* ==========================================
+    34→    34→       RESET & BASE STYLES
+    35→    35→       ========================================== */
+    36→    36→    * {
+    37→    37→      margin: 0;
+    38→    38→      padding: 0;
+    39→    39→      box-sizing: border-box;
+    40→    40→      border-radius: 0 !important; /* Absolute sharp corners */
+    41→    41→    }
+    42→    42→
+    43→    43→    html {
+    44→    44→      scroll-behavior: smooth;
+    45→    45→      background-color: var(--bg-primary);
+    46→    46→      color: var(--text-primary);
+    47→    47→      overflow-x: hidden;
+    48→    48→    }
+    49→    49→
+    50→    50→    body {
+    51→    51→      font-family: var(--font-sans);
+    52→    52→      font-weight: 300;
+    53→    53→      line-height: 1.6;
+    54→    54→      overflow-x: hidden;
+    55→    55→      background-color: var(--bg-primary);
+    56→    56→    }
+    57→    57→
+    58→    58→    body.menu-open {
+    59→    59→      overflow: hidden;
+    60→    60→    }
+    61→    61→
+    62→    62→    /* Scrollbar */
+    63→    63→    ::-webkit-scrollbar {
+    64→    64→      width: 5px;
+    65→    65→    }
+    66→    66→    
+    67→    67→    ::-webkit-scrollbar-track {
+    68→    68→      background: var(--bg-primary);
+    69→    69→    }
+    70→    70→    
+    71→    71→    ::-webkit-scrollbar-thumb {
+    72→    72→      background: #222222;
+    73→    73→      transition: background 0.3s;
+    74→    74→    }
+    75→    75→    
+    76→    76→    ::-webkit-scrollbar-thumb:hover {
+    77→    77→      background: var(--accent);
+    78→    78→    }
+    79→    79→
+    80→    80→    /* ==========================================
+    81→    81→       TYPOGRAPHY
+    82→    82→       ========================================== */
+    83→    83→    h1, h2, h3, h4, h5, h6 {
+    84→    84→      font-weight: 400;
+    85→    85→    }
+    86→    86→
+    87→    87→    .section-label {
+    88→    88→      font-family: var(--font-sans-alt);
+    89→    89→      font-size: 0.75rem;
+    90→    90→      font-weight: 500;
+    91→    91→      text-transform: uppercase;
+    92→    92→      letter-spacing: 0.45em;
+    93→    93→      color: var(--accent);
+    94→    94→      margin-bottom: 2rem;
+    95→    95→      display: block;
+    96→    96→    }
+    97→    97→
+    98→    98→    .section-title {
+    99→    99→      font-family: var(--font-serif-alt);
+   100→   100→      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+   101→   101→      font-weight: 300;
+   102→   102→      color: var(--text-primary);
+   103→   103→      line-height: 1.1;
+   104→   104→      margin-bottom: 2.5rem;
+   105→   105→      letter-spacing: -0.01em;
+   106→   106→    }
+   107→   107→
+   108→   108→    /* ==========================================
+   109→   109→       PRELOADER
+   110→   110→       ========================================== */
+   111→   111→    #preloader {
+   112→   112→      position: fixed;
+   113→   113→      top: 0;
+   114→   114→      left: 0;
+   115→   115→      width: 100vw;
+   116→   116→      height: 100vh;
+   117→   117→      background-color: #000000;
+   118→   118→      display: flex;
+   119→   119→      justify-content: center;
+   120→   120→      align-items: center;
+   121→   121→      z-index: 10000;
+   122→   122→      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+   123→   123→    }
+   124→   124→
+   125→   125→    #preloader.fade-out {
+   126→   126→      opacity: 0;
+   127→   127→      visibility: hidden;
+   128→   128→    }
+   129→   129→
+   130→   130→    .preloader-content {
+   131→   131→      text-align: center;
+   132→   132→    }
+   133→   133→
+   134→   134→    .preloader-title {
+   135→   135→      font-family: var(--font-serif);
+   136→   136→      font-size: clamp(1.8rem, 4vw, 3rem);
+   137→   137→      color: var(--text-primary);
+   138→   138→      letter-spacing: 0.15em;
+   139→   139→      font-weight: 400;
+   140→   140→      opacity: 0;
+   141→   141→      transform: translateY(20px);
+   142→   142→      animation: preloader-fade-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+   143→   143→    }
+   144→   144→
+   145→   145→    @keyframes preloader-fade-in {
+   146→   146→      to {
+   147→   147→        opacity: 1;
+   148→   148→        transform: translateY(0);
+   149→   149→      }
+   150→   150→    }
+   151→   151→
+   152→   152→    /* ==========================================
+   153→   153→       CUSTOM CURSOR
+   154→   154→       ========================================== */
+   155→   155→    .custom-cursor {
+   156→   156→      width: 8px;
+   157→   157→      height: 8px;
+   158→   158→      background-color: #ffffff;
+   159→   159→      border-radius: 50% !important; /* Exception for cursor circle */
+   160→   160→      pointer-events: none;
+   161→   161→      position: fixed;
+   162→   162→      top: 0;
+   163→   163→      left: 0;
+   164→   164→      z-index: 9999;
+   165→   165→      mix-blend-mode: difference;
+   166→   166→      transform: translate(-50%, -50%);
+   167→   167→      opacity: 0;
+   168→   168→      transition: opacity 0.3s, width 0.3s, height 0.3s, background-color 0.3s;
+   169→   169→    }
+   170→   170→
+   171→   171→    .custom-cursor.visible {
+   172→   172→      opacity: 1;
+   173→   173→    }
+   174→   174→
+   175→   175→    .custom-cursor.hovered {
+   176→   176→      width: 32px;
+   177→   177→      height: 32px;
+   178→   178→      background-color: rgba(var(--accent-rgb), 0.3);
+   179→   179→      border: 1px solid var(--accent);
+   180→   180→      mix-blend-mode: normal;
+   181→   181→    }
+   182→   182→
+   183→   183→    @media (pointer: coarse) {
+   184→   184→      .custom-cursor {
+   185→   185→        display: none !important;
+   186→   186→      }
+   187→   187→    }
+   188→   188→
+   189→   189→    /* ==========================================
+   190→   190→       NAVIGATION
+   191→   191→       ========================================== */
+   192→   192→    .navbar {
+   193→   193→      position: fixed;
+   194→   194→      top: 0;
+   195→   195→      left: 0;
+   196→   196→      width: 100%;
+   197→   197→      padding: 2.2rem 4vw;
+   198→   198→      display: flex;
+   199→   199→      justify-content: space-between;
+   200→   200→      align-items: center;
+   201→   201→      z-index: 999;
+   202→   202→      border-bottom: 1px solid transparent;
+   203→   203→      transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+   204→   204→                  backdrop-filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+   205→   205→                  border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+   206→   206→                  padding 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+   207→   207→    }
+   208→   208→
+   209→   209→    .navbar.scrolled {
+   210→   210→      background-color: rgba(10, 10, 10, 0.9);
+   211→   211→      backdrop-filter: blur(15px);
+   212→   212→      -webkit-backdrop-filter: blur(15px);
+   213→   213→      border-color: var(--border-color);
+   214→   214→      padding: 1.2rem 4vw;
+   215→   215→    }
+   216→   216→
+   217→   217→    .nav-brand {
+   218→   218→      font-family: var(--font-serif);
+   219→   219→      font-size: 1.4rem;
+   220→   220→      font-weight: 400;
+   221→   221→      color: var(--text-primary);
+   222→   222→      text-decoration: none;
+   223→   223→      letter-spacing: 0.15em;
+   224→   224→      transition: color 0.3s;
+   225→   225→    }
+   226→   226→
+   227→   227→    .nav-brand span {
+   228→   228→      color: var(--accent);
+   229→   229→    }
+   230→   230→
+   231→   231→    .nav-links {
+   232→   232→      display: flex;
+   233→   233→      gap: 3vw;
+   234→   234→      list-style: none;
+   235→   235→    }
+   236→   236→
+   237→   237→    .nav-links a {
+   238→   238→      font-family: var(--font-sans-alt);
+   239→   239→      font-size: 0.7rem;
+   240→   240→      font-weight: 500;
+   241→   241→      text-transform: uppercase;
+   242→   242→      letter-spacing: 0.35em;
+   243→   243→      color: var(--text-primary);
+   244→   244→      text-decoration: none;
+   245→   245→      opacity: 0.5;
+   246→   246→      transition: opacity 0.3s, color 0.3s;
+   247→   247→      position: relative;
+   248→   248→      padding-bottom: 4px;
+   249→   249→    }
+   250→   250→
+   251→   251→    .nav-links a::after {
+   252→   252→      content: '';
+   253→   253→      position: absolute;
+   254→   254→      bottom: 0;
+   255→   255→      left: 0;
+   256→   256→      width: 0;
+   257→   257→      height: 1px;
+   258→   258→      background-color: var(--accent);
+   259→   259→      transition: width 0.3s ease;
+   260→   260→    }
+   261→   261→
+   262→   262→    .nav-links a:hover,
+   263→   263→    .nav-links a.active {
+   264→   264→      opacity: 1;
+   265→   265→      color: var(--accent);
+   266→   266→    }
+   267→   267→
+   268→   268→    .nav-links a.active::after {
+   269→   269→      width: 100%;
+   270→   270→    }
+   271→   271→
+   272→   272→    .menu-toggle {
+   273→   273→      display: none;
+   274→   274→      flex-direction: column;
+   275→   275→      gap: 8px;
+   276→   276→      background: none;
+   277→   277→      border: none;
+   278→   278→      cursor: pointer;
+   279→   279→      z-index: 1001;
+   280→   280→      padding: 5px;
+   281→   281→    }
+   282→   282→
+   283→   283→    .menu-toggle span {
+   284→   284→      display: block;
+   285→   285→      width: 28px;
+   286→   286→      height: 1px;
+   287→   287→      background-color: var(--text-primary);
+   288→   288→      transition: transform 0.3s, opacity 0.3s;
+   289→   289→    }
+   290→   290→
+   291→   291→    /* ==========================================
+   292→   292→       HERO SECTION
+   293→   293→       ========================================== */
+   294→   294→    .hero {
+   295→   295→      position: relative;
+   296→   296→      width: 100%;
+   297→   297→      height: 100vh;
+   298→   298→      overflow: hidden;
+   299→   299→      display: flex;
+   300→   300→      flex-direction: column;
+   301→   301→      justify-content: center;
+   302→   302→      align-items: center;
+   303→   303→      text-align: center;
+   304→   304→      background-color: #000;
+   305→   305→    }
+   306→   306→
+   307→   307→    .hero-bg-container {
+   308→   308→      position: absolute;
+   309→   309→      top: 0;
+   310→   310→      left: 0;
+   311→   311→      width: 100%;
+   312→   312→      height: 120%; /* Offset for parallax */
+   313→   313→      z-index: 1;
+   314→   314→      will-change: transform;
+   315→   315→    }
+   316→   316→
+   317→   317→    .hero-bg {
+   318→   318→      width: 100%;
+   319→   319→      height: 100%;
+   320→   320→      background-image: url('https://narthehunter1337.github.io/genolixxss/photo1.jpg');
+   321→   321→      background-size: cover;
+   322→   322→      background-position: center;
+   323→   323→      filter: grayscale(30%) brightness(85%);
+   324→   324→    }
+   325→   325→
+   326→   326→    .hero-overlay {
+   327→   327→      position: absolute;
+   328→   328→      top: 0;
+   329→   329→      left: 0;
+   330→   330→      width: 100%;
+   331→   331→      height: 100%;
+   332→   332→      background: linear-gradient(
+   333→   333→        to bottom,
+   334→   334→        rgba(10, 10, 10, 0.4) 0%,
+   335→   335→        rgba(10, 10, 10, 0.55) 50%,
+   336→   336→        rgba(10, 10, 10, 0.95) 100%
+   337→   337→      );
+   338→   338→      z-index: 2;
+   339→   339→    }
+   340→   340→
+   341→   341→    .hero-content {
+   342→   342→      position: relative;
+   343→   343→      z-index: 3;
+   344→   344→      padding: 0 2rem;
+   345→   345→      max-width: 1200px;
+   346→   346→    }
+   347→   347→
+   348→   348→    .hero-title {
+   349→   349→      font-family: var(--font-serif);
+   350→   350→      font-size: clamp(2.8rem, 8.5vw, 6.8rem);
+   351→   351→      font-weight: 400;
+   352→   352→      color: var(--text-primary);
+   353→   353→      margin-bottom: 1.5rem;
+   354→   354→      letter-spacing: -0.01em;
+   355→   355→      line-height: 1;
+   356→   356→    }
+   357→   357→
+   358→   358→    .hero-subtitle {
+   359→   359→      font-family: var(--font-sans-alt);
+   360→   360→      font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+   361→   361→      font-weight: 500;
+   362→   362→      text-transform: uppercase;
+   363→   363→      color: var(--accent);
+   364→   364→      letter-spacing: 0.5em;
+   365→   365→      margin-bottom: 4.5rem;
+   366→   366→    }
+   367→   367→
+   368→   368→    .hero-buttons {
+   369→   369→      display: flex;
+   370→   370→      gap: 2rem;
+   371→   371→      justify-content: center;
+   372→   372→      flex-wrap: wrap;
+   373→   373→    }
+   374→   374→
+   375→   375→    .ghost-btn {
+   376→   376→      font-family: var(--font-sans-alt);
+   377→   377→      font-size: 0.7rem;
+   378→   378→      font-weight: 500;
+   379→   379→      text-transform: uppercase;
+   380→   380→      letter-spacing: 0.25em;
+   381→   381→      color: var(--text-primary);
+   382→   382→      text-decoration: none;
+   383→   383→      border: 1.5px solid var(--text-primary);
+   384→   384→      padding: 1.3rem 2.5rem;
+   385→   385→      background-color: transparent;
+   386→   386→      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+   387→   387→      display: inline-flex;
+   388→   388→      align-items: center;
+   389→   389→      gap: 0.6rem;
+   390→   390→    }
+   391→   391→
+   392→   392→    .ghost-btn:hover {
+   393→   393→      background-color: var(--accent);
+   394→   394→      border-color: var(--accent);
+   395→   395→      color: #000000;
+   396→   396→    }
+   397→   397→
+   398→   398→    /* Scroll Down Indicator */
+   399→   399→    .scroll-down {
+   400→   400→      position: absolute;
+   401→   401→      bottom: 3rem;
+   402→   402→      left: 50%;
+   403→   403→      transform: translateX(-50%);
+   404→   404→      z-index: 3;
+   405→   405→      display: flex;
+   406→   406→      flex-direction: column;
+   407→   407→      align-items: center;
+   408→   408→      gap: 0.8rem;
+   409→   409→      text-decoration: none;
+   410→   410→      opacity: 0.6;
+   411→   411→      transition: opacity 0.3s;
+   412→   412→    }
+   413→   413→
+   414→   414→    .scroll-down:hover {
+   415→   415→      opacity: 1;
+   416→   416→    }
+   417→   417→
+   418→   418→    .scroll-down-label {
+   419→   419→      font-family: var(--font-sans-alt);
+   420→   420→      font-size: 0.55rem;
+   421→   421→      font-weight: 500;
+   422→   422→      text-transform: uppercase;
+   423→   423→      letter-spacing: 0.4em;
+   424→   424→      color: var(--text-secondary);
+   425→   425→    }
+   426→   426→
+   427→   427→    .scroll-down-line {
+   428→   428→      width: 1px;
+   429→   429→      height: 60px;
+   430→   430→      background: linear-gradient(to bottom, var(--text-secondary), transparent);
+   431→   431→      position: relative;
+   432→   432→      overflow: hidden;
+   433→   433→    }
+   434→   434→
+   435→   435→    .scroll-down-line::after {
+   436→   436→      content: '';
+   437→   437→      position: absolute;
+   438→   438→      top: 0;
+   439→   439→      left: 0;
+   440→   440→      width: 100%;
+   441→   441→      height: 25px;
+   442→   442→      background: var(--accent);
+   443→   443→      animation: scroll-indicator 2.2s infinite ease-in-out;
+   444→   444→    }
+   445→   445→
+   446→   446→    @keyframes scroll-indicator {
+   447→   447→      0% {
+   448→   448→        top: -25px;
+   449→   449→      }
+   450→   450→      70%, 100% {
+   451→   451→        top: 60px;
+   452→   452→      }
+   453→   453→    }
+   454→   454→
+   455→   455→    /* ==========================================
+   456→   456→       SECTION MAIN LAYOUT
+   457→   457→       ========================================== */
+   458→   458→    section {
+   459→   459→      padding: 12rem 8vw;
+   460→   460→      background-color: var(--bg-primary);
+   461→   461→      border-bottom: 1px solid var(--border-color);
+   462→   462→      position: relative;
+   463→   463→    }
+   464→   464→
+   465→   465→    /* ==========================================
+   466→   466→       ABOUT US (О НАС)
+   467→   467→       ========================================== */
+   468→   468→    .about-grid {
+   469→   469→      display: grid;
+   470→   470→      grid-template-columns: 1.1fr 1fr;
+   471→   471→      gap: 8vw;
+   472→   472→      align-items: center;
+   473→   473→    }
+   474→   474→
+   475→   475→    .about-img-container {
+   476→   476→      overflow: hidden;
+   477→   477→      position: relative;
+   478→   478→      border: 1px solid var(--border-color);
+   479→   479→    }
+   480→   480→
+   481→   481→    .about-img {
+   482→   482→      width: 100%;
+   483→   483→      height: auto;
+   484→   484→      aspect-ratio: 3 / 4;
+   485→   485→      object-fit: cover;
+   486→   486→      filter: grayscale(100%);
+   487→   487→      transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+   488→   488→                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+   489→   489→      display: block;
+   490→   490→    }
+   491→   491→
+   492→   492→    .about-img-container:hover .about-img {
+   493→   493→      filter: grayscale(0%);
+   494→   494→      transform: scale(1.04);
+   495→   495→    }
+   496→   496→
+   497→   497→    .about-content {
+   498→   498→      display: flex;
+   499→   499→      flex-direction: column;
+   500→   500→      justify-content: center;
+   501→   501→    }
+   502→   502→
+   503→   503→    .about-text {
+   504→   504→      font-family: var(--font-sans);
+   505→   505→      font-size: 1.05rem;
+   506→   506→      font-weight: 300;
+   507→   507→      line-height: 1.9;
+   508→   508→      color: var(--text-secondary);
+   509→   509→      max-width: 520px;
+   510→   510→    }
+   511→   511→
+   512→   512→    /* ==========================================
+   513→   513→       ARTIST LAYOUTS (GENOTSYD & GALIXXSS)
+   514→   514→       ========================================== */
+   515→   515→    .artist-section {
+   516→   516→      padding: 0;
+   517→   517→    }
+   518→   518→
+   519→   519→    .artist-grid {
+   520→   520→      display: grid;
+   521→   521→      grid-template-columns: 1.1fr 1fr;
+   522→   522→      min-height: 100vh;
+   523→   523→    }
+   524→   524→
+   525→   525→    .artist-content {
+   526→   526→      padding: 10rem 7vw;
+   527→   527→      display: flex;
+   528→   528→      flex-direction: column;
+   529→   529→      justify-content: center;
+   530→   530→      background-color: var(--bg-primary);
+   531→   531→    }
+   532→   532→
+   533→   533→    .artist-description {
+   534→   534→      font-family: var(--font-sans);
+   535→   535→      font-size: 1rem;
+   536→   536→      font-weight: 300;
+   537→   537→      line-height: 1.8;
+   538→   538→      color: var(--text-secondary);
+   539→   539→      margin-bottom: 3rem;
+   540→   540→      max-width: 520px;
+   541→   541→    }
+   542→   542→
+   543→   543→    .artist-img-wrapper {
+   544→   544→      position: relative;
+   545→   545→      overflow: hidden;
+   546→   546→      height: 100%;
+   547→   547→      min-height: 600px;
+   548→   548→      border-left: 1px solid var(--border-color);
+   549→   549→    }
+   550→   550→
+   551→   551→    .artist-img {
+   552→   552→      width: 100%;
+   553→   553→      height: 100%;
+   554→   554→      object-fit: cover;
+   555→   555→      filter: grayscale(100%);
+   556→   556→      transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+   557→   557→                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+   558→   558→      display: block;
+   559→   559→    }
+   560→   560→
+   561→   561→    .artist-img-wrapper:hover .artist-img {
+   562→   562→      filter: grayscale(0%);
+   563→   563→      transform: scale(1.03);
+   564→   564→    }
+   565→   565→
+   566→   566→    /* Mirrored artist layout */
+   567→   567→    .artist-grid.mirrored {
+   568→   568→      grid-template-columns: 1fr 1.1fr;
+   569→   569→    }
+   570→   570→
+   571→   571→    .artist-grid.mirrored .artist-content {
+   572→   572→      grid-column: 2;
+   573→   573→    }
+   574→   574→
+   575→   575→    .artist-grid.mirrored .artist-img-wrapper {
+   576→   576→      grid-column: 1;
+   577→   577→      grid-row: 1;
+   578→   578→      border-left: none;
+   579→   579→      border-right: 1px solid var(--border-color);
+   580→   580→    }
+   581→   581→
+   582→   582→    /* Tracklists */
+   583→   583→    .tracklist {
+   584→   584→      margin: 2.5rem 0 3.5rem 0;
+   585→   585→      border-top: 1px solid var(--border-color);
+   586→   586→    }
+   587→   587→
+   588→   588→    .track-item {
+   589→   589→      display: flex;
+   590→   590→      justify-content: space-between;
+   591→   591→      align-items: center;
+   592→   592→      padding: 1.4rem 0;
+   593→   593→      border-bottom: 1px solid var(--border-color);
+   594→   594→      font-family: var(--font-sans);
+   595→   595→      transition: padding-left 0.3s ease, color 0.3s ease;
+   596→   596→      cursor: pointer;
+   597→   597→    }
+   598→   598→
+   599→   599→    .track-item:hover {
+   600→   600→      padding-left: 0.8rem;
+   601→   601→      color: var(--accent);
+   602→   602→    }
+   603→   603→
+   604→   604→    .track-left {
+   605→   605→      display: flex;
+   606→   606→      align-items: center;
+   607→   607→      gap: 2.2rem;
+   608→   608→    }
+   609→   609→
+   610→   610→    .track-num {
+   611→   611→      font-family: var(--font-sans-alt);
+   612→   612→      font-size: 0.7rem;
+   613→   613→      letter-spacing: 0.1em;
+   614→   614→      color: var(--accent);
+   615→   615→      font-weight: 500;
+   616→   616→    }
+   617→   617→
+   618→   618→    .track-title {
+   619→   619→      font-size: 0.95rem;
+   620→   620→      font-weight: 400;
+   621→   621→      color: var(--text-primary);
+   622→   622→      text-transform: uppercase;
+   623→   623→      letter-spacing: 0.05em;
+   624→   624→    }
+   625→   625→
+   626→   626→    .track-feat {
+   627→   627→      font-size: 0.8rem;
+   628→   628→      color: var(--text-secondary);
+   629→   629→      font-weight: 300;
+   630→   630→      text-transform: none;
+   631→   631→      letter-spacing: 0;
+   632→   632→    }
+   633→   633→
+   634→   634→    .track-action {
+   635→   635→      font-family: var(--font-sans-alt);
+   636→   636→      font-size: 0.6rem;
+   637→   637→      letter-spacing: 0.2em;
+   638→   638→      text-transform: uppercase;
+   639→   639→      opacity: 0;
+   640→   640→      color: var(--accent);
+   641→   641→      transition: opacity 0.3s ease;
+   642→   642→    }
+   643→   643→
+   644→   644→    .track-item:hover .track-action {
+   645→   645→      opacity: 1;
+   646→   646→    }
+   647→   647→
+   648→   648→    /* ==========================================
+   649→   649→       COLLABORATIONS (ВМЕСТЕ)
+   650→   650→       ========================================== */
+   651→   651→    .together-section {
+   652→   652→      position: relative;
+   653→   653→      min-height: 100vh;
+   654→   654→      display: flex;
+   655→   655→      flex-direction: column;
+   656→   656→      justify-content: center;
+   657→   657→      align-items: center;
+   658→   658→      padding: 12rem 4vw;
+   659→   659→      background: none;
+   660→   660→      border-bottom: 1px solid var(--border-color);
+   661→   661→    }
+   662→   662→
+   663→   663→    .together-bg-container {
+   664→   664→      position: absolute;
+   665→   665→      top: 0;
+   666→   666→      left: 0;
+   667→   667→      width: 100%;
+   668→   668→      height: 100%;
+   669→   669→      z-index: 1;
+   670→   670→    }
+   671→   671→
+   672→   672→    .together-bg {
+   673→   673→      width: 100%;
+   674→   674→      height: 100%;
+   675→   675→      background-image: url('https://narthehunter1337.github.io/genolixxss/photo6.jpg');
+   676→   676→      background-size: cover;
+   677→   677→      background-position: center;
+   678→   678→      filter: grayscale(40%) brightness(75%);
+   679→   679→    }
+   680→   680→
+   681→   681→    .together-overlay {
+   682→   682→      position: absolute;
+   683→   683→      top: 0;
+   684→   684→      left: 0;
+   685→   685→      width: 100%;
+   686→   686→      height: 100%;
+   687→   687→      background: rgba(10, 10, 10, 0.88);
+   688→   688→      z-index: 2;
+   689→   689→    }
+   690→   690→
+   691→   691→    .together-content {
+   692→   692→      position: relative;
+   693→   693→      z-index: 3;
+   694→   694→      width: 100%;
+   695→   695→      max-width: 950px;
+   696→   696→      text-align: center;
+   697→   697→    }
+   698→   698→
+   699→   699→    .together-subtitle {
+   700→   700→      font-family: var(--font-sans);
+   701→   701→      font-size: 1.05rem;
+   702→   702→      font-weight: 300;
+   703→   703→      color: var(--text-secondary);
+   704→   704→      margin-top: -1rem;
+   705→   705→      margin-bottom: 4.5rem;
+   706→   706→    }
+   707→   707→
+   708→   708→    .collab-cards {
+   709→   709→      display: flex;
+   710→   710→      flex-direction: column;
+   711→   711→      gap: 1.5rem;
+   712→   712→      text-align: left;
+   713→   713→    }
+   714→   714→
+   715→   715→    .collab-card {
+   716→   716→      background: rgba(15, 15, 15, 0.4);
+   717→   717→      backdrop-filter: blur(15px);
+   718→   718→      -webkit-backdrop-filter: blur(15px);
+   719→   719→      border: 1px solid rgba(255, 255, 255, 0.06);
+   720→   720→      padding: 2.2rem 3.5rem;
+   721→   721→      display: flex;
+   722→   722→      justify-content: space-between;
+   723→   723→      align-items: center;
+   724→   724→      transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s ease;
+   725→   725→      cursor: pointer;
+   726→   726→    }
+   727→   727→
+   728→   728→    .collab-card:hover {
+   729→   729→      border-color: var(--accent);
+   730→   730→      background: rgba(15, 15, 15, 0.75);
+   731→   731→      transform: translateY(-2px);
+   732→   732→    }
+   733→   733→
+   734→   734→    .collab-track-info {
+   735→   735→      display: flex;
+   736→   736→      flex-direction: column;
+   737→   737→      gap: 0.6rem;
+   738→   738→    }
+   739→   739→
+   740→   740→    .collab-title {
+   741→   741→      font-family: var(--font-serif-alt);
+   742→   742→      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+   743→   743→      color: var(--text-primary);
+   744→   744→      letter-spacing: 0.03em;
+   745→   745→      text-transform: uppercase;
+   746→   746→    }
+   747→   747→
+   748→   748→    .collab-artist {
+   749→   749→      font-family: var(--font-sans-alt);
+   750→   750→      font-size: 0.65rem;
+   751→   751→      text-transform: uppercase;
+   752→   752→      letter-spacing: 0.3em;
+   753→   753→      color: var(--accent);
+   754→   754→      font-weight: 500;
+   755→   755→    }
+   756→   756→
+   757→   757→    .collab-icon {
+   758→   758→      font-size: 1.3rem;
+   759→   759→      color: var(--text-secondary);
+   760→   760→      transition: color 0.3s ease, transform 0.3s ease;
+   761→   761→    }
+   762→   762→
+   763→   763→    .collab-card:hover .collab-icon {
+   764→   764→      color: var(--accent);
+   765→   765→      transform: translateX(6px);
+   766→   766→    }
+   767→   767→
+   768→   768→    /* ==========================================
+   769→   769→       GALLERY (ГАЛЕРЕЯ)
+   770→   770→       ========================================== */
+   771→   771→    .gallery-grid {
+   772→   772→      column-count: 3;
+   773→   773→      column-gap: 2rem;
+   774→   774→    }
+   775→   775→
+   776→   776→    .gallery-item {
+   777→   777→      display: inline-block;
+   778→   778→      width: 100%;
+   779→   779→      margin-bottom: 2rem;
+   780→   780→      overflow: hidden;
+   781→   781→      cursor: pointer;
+   782→   782→      position: relative;
+   783→   783→      border: 1px solid var(--border-color);
+   784→   784→    }
+   785→   785→
+   786→   786→    .gallery-item img {
+   787→   787→      width: 100%;
+   788→   788→      height: auto;
+   789→   789→      display: block;
+   790→   790→      filter: grayscale(100%);
+   791→   791→      transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+   792→   792→                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+   793→   793→    }
+   794→   794→
+   795→   795→    .gallery-item:hover img {
+   796→   796→      filter: grayscale(0%);
+   797→   797→      transform: scale(1.04);
+   798→   798→    }
+   799→   799→
+   800→   800→    .gallery-overlay {
+   801→   801→      position: absolute;
+   802→   802→      top: 0;
+   803→   803→      left: 0;
+   804→   804→      width: 100%;
+   805→   805→      height: 100%;
+   806→   806→      background-color: rgba(var(--accent-rgb), 0.08);
+   807→   807→      opacity: 0;
+   808→   808→      transition: opacity 0.4s ease;
+   809→   809→      pointer-events: none;
+   810→   810→    }
+   811→   811→
+   812→   812→    .gallery-item:hover .gallery-overlay {
+   813→   813→      opacity: 1;
+   814→   814→    }
+   815→   815→
+   816→   816→    /* ==========================================
+   817→   817→       CUSTOM LIGHTBOX
+   818→   818→       ========================================== */
+   819→   819→    .lightbox {
+   820→   820→      position: fixed;
+   821→   821→      top: 0;
+   822→   822→      left: 0;
+   823→   823→      width: 100%;
+   824→   824→      height: 100%;
+   825→   825→      background-color: rgba(5, 5, 5, 0.96);
+   826→   826→      backdrop-filter: blur(15px);
+   827→   827→      -webkit-backdrop-filter: blur(15px);
+   828→   828→      z-index: 10000;
+   829→   829→      display: flex;
+   830→   830→      justify-content: center;
+   831→   831→      align-items: center;
+   832→   832→      opacity: 0;
+   833→   833→      visibility: hidden;
+   834→   834→      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+   835→   835→    }
+   836→   836→
+   837→   837→    .lightbox.active {
+   838→   838→      opacity: 1;
+   839→   839→      visibility: visible;
+   840→   840→    }
+   841→   841→
+   842→   842→    .lightbox-content {
+   843→   843→      max-width: 90%;
+   844→   844→      max-height: 85vh;
+   845→   845→      position: relative;
+   846→   846→      transform: scale(0.92);
+   847→   847→      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+   848→   848→    }
+   849→   849→
+   850→   850→    .lightbox.active .lightbox-content {
+   851→   851→      transform: scale(1);
+   852→   852→    }
+   853→   853→
+   854→   854→    .lightbox-img {
+   855→   855→      width: 100%;
+   856→   856→      height: auto;
+   857→   857→      max-height: 85vh;
+   858→   858→      object-fit: contain;
+   859→   859→      border: 1px solid var(--border-color);
+   860→   860→      display: block;
+   861→   861→    }
+   862→   862→
+   863→   863→    .lightbox-close {
+   864→   864→      position: absolute;
+   865→   865→      top: -45px;
+   866→   866→      right: 0;
+   867→   867→      background: none;
+   868→   868→      border: none;
+   869→   869→      color: var(--text-primary);
+   870→   870→      font-size: 2rem;
+   871→   871→      cursor: pointer;
+   872→   872→      font-family: var(--font-sans);
+   873→   873→      font-weight: 200;
+   874→   874→      opacity: 0.6;
+   875→   875→      transition: opacity 0.3s, color 0.3s;
+   876→   876→      line-height: 1;
+   877→   877→      padding: 5px;
+   878→   878→    }
+   879→   879→
+   880→   880→    .lightbox-close:hover {
+   881→   881→      opacity: 1;
+   882→   882→      color: var(--accent);
+   883→   883→    }
+   884→   884→
+   885→   885→    /* ==========================================
+   886→   886→       FOOTER
+   887→   887→       ========================================== */
+   888→   888→    .footer {
+   889→   889→      background-color: #050505;
+   890→   890→      padding: 6rem 8vw;
+   891→   891→      border-top: 1px solid var(--border-color);
+   892→   892→      display: flex;
+   893→   893→      justify-content: space-between;
+   894→   894→      align-items: center;
+   895→   895→      flex-wrap: wrap;
+   896→   896→      gap: 2.5rem;
+   897→   897→    }
+   898→   898→
+   899→   899→    .footer-left {
+   900→   900→      font-family: var(--font-sans-alt);
+   901→   901→      font-size: 0.75rem;
+   902→   902→      text-transform: uppercase;
+   903→   903→      letter-spacing: 0.25em;
+   904→   904→      color: var(--text-primary);
+   905→   905→    }
+   906→   906→
+   907→   907→    .footer-left span {
+   908→   908→      color: var(--accent);
+   909→   909→    }
+   910→   910→
+   911→   911→    .footer-center {
+   912→   912→      font-family: var(--font-sans-alt);
+   913→   913→      font-size: 0.68rem;
+   914→   914→      text-transform: uppercase;
+   915→   915→      letter-spacing: 0.3em;
+   916→   916→      color: var(--text-secondary);
+   917→   917→    }
+   918→   918→
+   919→   919→    .footer-right {
+   920→   920→      display: flex;
+   921→   921→      gap: 1.8rem;
+   922→   922→    }
+   923→   923→
+   924→   924→    .footer-link {
+   925→   925→      color: var(--text-secondary);
+   926→   926→      transition: color 0.3s;
+   927→   927→      display: inline-flex;
+   928→   928→      align-items: center;
+   929→   929→    }
+   930→   930→
+   931→   931→    .footer-link:hover {
+   932→   932→      color: var(--accent);
+   933→   933→    }
+   934→   934→
+   935→   935→    .footer-link svg {
+   936→   936→      width: 20px;
+   937→   937→      height: 20px;
+   938→   938→      fill: currentColor;
+   939→   939→    }
+   940→   940→
+   941→   941→    /* ==========================================
+   942→   942→       SCROLL ANIMATIONS (INTERSECTION OBSERVER)
+   943→   943→       ========================================== */
+   944→   944→    .reveal-el {
+   945→   945→      opacity: 0;
+   946→   946→      transform: translateY(30px);
+   947→   947→      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+   948→   948→                  transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+   949→   949→    }
+   950→   950→
+   951→   951→    .reveal-el.visible {
+   952→   952→      opacity: 1;
+   953→   953→      transform: translateY(0);
+   954→   954→    }
+   955→   955→
+   956→   956→    .delay-1 { transition-delay: 0.1s; }
+   957→   957→    .delay-2 { transition-delay: 0.2s; }
+   958→   958→    .delay-3 { transition-delay: 0.3s; }
+   959→   959→    .delay-4 { transition-delay: 0.4s; }
+   960→   960→
+   961→   961→    /* ==========================================
+   962→   962→       SECRET EASTER EGG STYLES
+   963→   963→       ========================================== */
+   964→   964→    .secret-trigger {
+   965→   965→      position: absolute;
+   966→   966→      top: 6px;
+   967→   967→      left: 6px;
+   968→   968→      font-size: 0.65rem;
+   969→   969→      color: rgba(255, 255, 255, 0.2);
+   970→   970→      user-select: none;
+   971→   971→      -webkit-user-select: none;
+   972→   972→      cursor: default;
+   973→   973→      z-index: 1002;
+   974→   974→    }
+   975→   975→
+   976→   976→    .secret-modal {
+   977→   977→      position: fixed;
+   978→   978→      top: 0;
+   979→   979→      left: 0;
+   980→   980→      width: 100vw;
+   981→   981→      height: 100vh;
+   982→   982→      background-color: rgba(0, 0, 0, 0.9);
+   983→   983→      backdrop-filter: blur(12px);
+   984→   984→      -webkit-backdrop-filter: blur(12px);
+   985→   985→      z-index: 10005;
+   986→   986→      display: flex;
+   987→   987→      justify-content: center;
+   988→   988→      align-items: center;
+   989→   989→      opacity: 0;
+   990→   990→      visibility: hidden;
+   991→   991→      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+   992→   992→    }
+   993→   993→
+   994→   994→    .secret-modal.active {
+   995→   995→      opacity: 1;
+   996→   996→      visibility: visible;
+   997→   997→    }
+   998→   998→
+   999→   999→    .secret-modal-content {
+  1000→  1000→      background-color: #000000;
+  1001→  1001→      border: 1px solid var(--text-primary);
+  1002→  1002→      padding: 3.5rem;
+  1003→  1003→      max-width: 450px;
+  1004→  1004→      width: 90%;
+  1005→  1005→      position: relative;
+  1006→  1006→      transform: scale(0.95);
+  1007→  1007→      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  1008→  1008→      text-align: center;
+  1009→  1009→    }
+  1010→  1010→
+  1011→  1011→    .secret-modal.active .secret-modal-content {
+  1012→  1012→      transform: scale(1);
+  1013→  1013→    }
+  1014→  1014→
+  1015→  1015→    .secret-modal-close {
+  1016→  1016→      position: absolute;
+  1017→  1017→      top: 15px;
+  1018→  1018→      right: 20px;
+  1019→  1019→      background: none;
+  1020→  1020→      border: none;
+  1021→  1021→      color: var(--text-primary);
+  1022→  1022→      font-size: 1.8rem;
+  1023→  1023→      cursor: pointer;
+  1024→  1024→      opacity: 0.5;
+  1025→  1025→      transition: opacity 0.3s;
+  1026→  1026→    }
+  1027→  1027→
+  1028→  1028→    .secret-modal-close:hover {
+  1029→  1029→      opacity: 1;
+  1030→  1030→    }
+  1031→  1031→
+  1032→  1032→    .secret-modal-title {
+  1033→  1033→      font-family: var(--font-serif);
+  1034→  1034→      font-size: 1.6rem;
+  1035→  1035→      letter-spacing: 0.15em;
+  1036→  1036→      margin-bottom: 2.5rem;
+  1037→  1037→      color: var(--text-primary);
+  1038→  1038→    }
+  1039→  1039→
+  1040→  1040→    .secret-form {
+  1041→  1041→      display: flex;
+  1042→  1042→      flex-direction: column;
+  1043→  1043→      gap: 2rem;
+  1044→  1044→    }
+  1045→  1045→
+  1046→  1046→    .secret-input {
+  1047→  1047→      background: transparent;
+  1048→  1048→      border: none;
+  1049→  1049→      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  1050→  1050→      color: var(--text-primary);
+  1051→  1051→      font-family: var(--font-sans-alt);
+  1052→  1052→      font-size: 0.85rem;
+  1053→  1053→      padding: 0.8rem 0;
+  1054→  1054→      text-align: center;
+  1055→  1055→      letter-spacing: 0.25em;
+  1056→  1056→      outline: none;
+  1057→  1057→      transition: border-bottom-color 0.3s;
+  1058→  1058→    }
+  1059→  1059→
+  1060→  1060→    .secret-input:focus {
+  1061→  1061→      border-bottom-color: var(--accent);
+  1062→  1062→    }
+  1063→  1063→
+  1064→  1064→    .secret-confirm-btn {
+  1065→  1065→      background: transparent;
+  1066→  1066→      border: 1px solid var(--text-primary);
+  1067→  1067→      color: var(--text-primary);
+  1068→  1068→      padding: 1.1rem;
+  1069→  1069→      font-family: var(--font-sans-alt);
+  1070→  1070→      font-size: 0.7rem;
+  1071→  1071→      letter-spacing: 0.25em;
+  1072→  1072→      cursor: pointer;
+  1073→  1073→      transition: all 0.3s;
+  1074→  1074→    }
+  1075→  1075→
+  1076→  1076→    .secret-confirm-btn:hover {
+  1077→  1077→      background-color: var(--text-primary);
+  1078→  1078→      color: #000000;
+  1079→  1079→    }
+  1080→  1080→
+  1081→  1081→    /* Shake Animation for incorrect password */
+  1082→  1082→    @keyframes shake {
+  1083→  1083→      0%, 100% { transform: translateX(0); }
+  1084→  1084→      20%, 60% { transform: translateX(-8px); }
+  1085→  1085→      40%, 80% { transform: translateX(8px); }
+  1086→  1086→    }
+  1087→  1087→
+  1088→  1088→    .secret-input.shake {
+  1089→  1089→      animation: shake 0.4s ease-in-out;
+  1090→  1090→      border-bottom-color: var(--accent) !important;
+  1091→  1091→    }
+  1092→  1092→
+  1093→  1093→    /* Secret Page Styles */
+  1094→  1094→    .secret-page {
+  1095→  1095→      position: fixed;
+  1096→  1096→      top: 0;
+  1097→  1097→      left: 0;
+  1098→  1098→      width: 100vw;
+  1099→  1099→      height: 100vh;
+  1100→  1100→      background-color: #000000;
+  1101→  1101→      z-index: 9998;
+  1102→  1102→      overflow-y: auto;
+  1103→  1103→      transform: translateY(100%);
+  1104→  1104→      opacity: 0;
+  1105→  1105→      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  1106→  1106→      padding: 8rem 8vw 6rem 8vw;
+  1107→  1107→      display: flex;
+  1108→  1108→      flex-direction: column;
+  1109→  1109→      justify-content: space-between;
+  1110→  1110→    }
+  1111→  1111→
+  1112→  1112→    .secret-page.active {
+  1113→  1113→      transform: translateY(0);
+  1114→  1114→      opacity: 1;
+  1115→  1115→    }
+  1116→  1116→
+  1117→  1117→    .secret-title-glitch {
+  1118→  1118→      font-family: var(--font-serif);
+  1119→  1119→      font-size: clamp(3rem, 10vw, 8rem);
+  1120→  1120→      text-transform: uppercase;
+  1121→  1121→      letter-spacing: 0.05em;
+  1122→  1122→      color: var(--text-primary);
+  1123→  1123→      position: relative;
+  1124→  1124→      display: inline-block;
+  1125→  1125→      margin-bottom: 0.5rem;
+  1126→  1126→      line-height: 1;
+  1127→  1127→    }
+  1128→  1128→
+  1129→  1129→    .secret-title-glitch::before,
+  1130→  1130→    .secret-title-glitch::after {
+  1131→  1131→      content: attr(data-text);
+  1132→  1132→      position: absolute;
+  1133→  1133→      top: 0;
+  1134→  1134→      left: 0;
+  1135→  1135→      width: 100%;
+  1136→  1136→      height: 100%;
+  1137→  1137→      background: #000;
+  1138→  1138→      clip: rect(0, 0, 0, 0);
+  1139→  1139→    }
+  1140→  1140→
+  1141→  1141→    .secret-title-glitch::before {
+  1142→  1142→      left: 2px;
+  1143→  1143→      text-shadow: -1px 0 var(--accent);
+  1144→  1144→      animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  1145→  1145→    }
+  1146→  1146→
+  1147→  1147→    .secret-title-glitch::after {
+  1148→  1148→      left: -2px;
+  1149→  1149→      text-shadow: -1px 0 #fff;
+  1150→  1150→      animation: glitch-anim-2 3s infinite linear alternate-reverse;
+  1151→  1151→    }
+  1152→  1152→
+  1153→  1153→    @keyframes glitch-anim-1 {
+  1154→  1154→      0% { clip: rect(20px, 9999px, 56px, 0); }
+  1155→  1155→      10% { clip: rect(45px, 9999px, 12px, 0); }
+  1156→  1156→      20% { clip: rect(85px, 9999px, 5px, 0); }
+  1157→  1157→      30% { clip: rect(5px, 9999px, 80px, 0); }
+  1158→  1158→      40% { clip: rect(62px, 9999px, 32px, 0); }
+  1159→  1159→      50% { clip: rect(15px, 9999px, 92px, 0); }
+  1160→  1160→      60% { clip: rect(78px, 9999px, 45px, 0); }
+  1161→  1161→      70% { clip: rect(3px, 9999px, 12px, 0); }
+  1162→  1162→      80% { clip: rect(55px, 9999px, 60px, 0); }
+  1163→  1163→      90% { clip: rect(90px, 9999px, 85px, 0); }
+  1164→  1164→      100% { clip: rect(12px, 9999px, 5px, 0); }
+  1165→  1165→    }
+  1166→  1166→
+  1167→  1167→    @keyframes glitch-anim-2 {
+  1168→  1168→      0% { clip: rect(76px, 9999px, 5px, 0); }
+  1169→  1169→      10% { clip: rect(12px, 9999px, 85px, 0); }
+  1170→  1170→      20% { clip: rect(33px, 9999px, 45px, 0); }
+  1171→  1171→      30% { clip: rect(92px, 9999px, 78px, 0); }
+  1172→  1172→      40% { clip: rect(5px, 9999px, 12px, 0); }
+  1173→  1173→      50% { clip: rect(55px, 9999px, 60px, 0); }
+  1174→  1174→      60% { clip: rect(15px, 9999px, 92px, 0); }
+  1175→  1175→      70% { clip: rect(85px, 9999px, 5px, 0); }
+  1176→  1176→      80% { clip: rect(45px, 9999px, 12px, 0); }
+  1177→  1177→      90% { clip: rect(20px, 9999px, 56px, 0); }
+  1178→  1178→      100% { clip: rect(62px, 9999px, 32px, 0); }
+  1179→  1179→    }
+  1180→  1180→
+  1181→  1181→    .secret-subheading {
+  1182→  1182→      font-family: var(--font-sans-alt);
+  1183→  1183→      font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+  1184→  1184→      text-transform: uppercase;
+  1185→  1185→      letter-spacing: 0.35em;
+  1186→  1186→      color: var(--accent);
+  1187→  1187→      margin-bottom: 5rem;
+  1188→  1188→    }
+  1189→  1189→
+  1190→  1190→    .secret-main-content {
+  1191→  1191→      display: grid;
+  1192→  1192→      grid-template-columns: 1fr 1fr;
+  1193→  1193→      gap: 8vw;
+  1194→  1194→      align-items: flex-start;
+  1195→  1195→      text-align: left;
+  1196→  1196→      margin-bottom: 4rem;
+  1197→  1197→    }
+  1198→  1198→
+  1199→  1199→    .secret-message-box {
+  1200→  1200→      display: flex;
+  1201→  1201→      flex-direction: column;
+  1202→  1202→      gap: 2rem;
+  1203→  1203→      max-width: 500px;
+  1204→  1204→    }
+  1205→  1205→
+  1206→  1206→    .secret-message-box p {
+  1207→  1207→      font-family: var(--font-serif-alt);
+  1208→  1208→      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  1209→  1209→      font-style: italic;
+  1210→  1210→      line-height: 1.8;
+  1211→  1211→      color: var(--text-secondary);
+  1212→  1212→    }
+  1213→  1213→
+  1214→  1214→    .secret-photos-grid {
+  1215→  1215→      display: flex;
+  1216→  1216→      flex-direction: column;
+  1217→  1217→      gap: 2rem;
+  1218→  1218→    }
+  1219→  1219→
+  1220→  1220→    .secret-photo-item {
+  1221→  1221→      position: relative;
+  1222→  1222→      border: 1px solid var(--border-color);
+  1223→  1223→    }
+  1224→  1224→
+  1225→  1225→    .secret-raw-img {
+  1226→  1226→      width: 100%;
+  1227→  1227→      height: auto;
+  1228→  1228→      aspect-ratio: 16 / 10;
+  1229→  1229→      object-fit: cover;
+  1230→  1230→      display: block;
+  1231→  1231→    }
+  1232→  1232→
+  1233→  1233→    .secret-photo-caption {
+  1234→  1234→      font-family: var(--font-sans-alt);
+  1235→  1235→      font-size: 0.6rem;
+  1236→  1236→      letter-spacing: 0.25em;
+  1237→  1237→      color: var(--text-secondary);
+  1238→  1238→      padding: 1rem;
+  1239→  1239→      display: block;
+  1240→  1240→      border-top: 1px solid var(--border-color);
+  1241→  1241→      background-color: #050505;
+  1242→  1242→    }
+  1243→  1243→
+  1244→  1244→    .secret-footer {
+  1245→  1245→      margin-top: auto;
+  1246→  1246→      text-align: left;
+  1247→  1247→      border-top: 1px solid var(--border-color);
+  1248→  1248→      padding-top: 2rem;
+  1249→  1249→    }
+  1250→  1250→
+  1251→  1251→    .secret-back-link {
+  1252→  1252→      font-family: var(--font-sans-alt);
+  1253→  1253→      font-size: 0.8rem;
+  1254→  1254→      letter-spacing: 0.3em;
+  1255→  1255→      color: var(--text-primary);
+  1256→  1256→      text-decoration: none;
+  1257→  1257→      transition: color 0.3s;
+  1258→  1258→    }
+  1259→  1259→
+  1260→  1260→    .secret-back-link:hover {
+  1261→  1261→      color: var(--accent);
+  1262→  1262→    }
+  1263→  1263→
+  1264→  1264→    /* ==========================================
+  1265→  1265→       RESPONSIVE & MOBILE DESIGN (MOBILE FIRST)
+  1266→  1266→       ========================================== */
+  1267→  1267→    @media (max-width: 992px) {
+  1268→  1268→      /* Navigation mobile styles */
+  1269→  1269→      .menu-toggle {
+  1270→  1270→        display: flex;
+  1271→  1271→      }
+  1272→  1272→
+  1273→  1273→      .nav-links {
+  1274→  1274→        position: fixed;
+  1275→  1275→        top: 0;
+  1276→  1276→        right: -100%;
+  1277→  1277→        width: 100%;
+  1278→  1278→        height: 100vh;
+  1279→  1279→        background-color: rgba(6, 6, 6, 0.98);
+  1280→  1280→        backdrop-filter: blur(20px);
+  1281→  1281→        -webkit-backdrop-filter: blur(20px);
+  1282→  1282→        flex-direction: column;
+  1283→  1283→        justify-content: center;
+  1284→  1284→        align-items: center;
+  1285→  1285→        gap: 3.5rem;
+  1286→  1286→        transition: right 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  1287→  1287→        z-index: 1000;
+  1288→  1288→        padding: 5rem 2rem;
+  1289→  1289→      }
+  1290→  1290→
+  1291→  1291→      .nav-links.active {
+  1292→  1292→        right: 0;
+  1293→  1293→      }
+  1294→  1294→
+  1295→  1295→      .nav-links a {
+  1296→  1296→        font-size: 1.1rem;
+  1297→  1297→        letter-spacing: 0.4em;
+  1298→  1298→      }
+  1299→  1299→
+  1300→  1300→      .menu-toggle.active span:nth-child(1) {
+  1301→  1301→        transform: translateY(9px) rotate(45deg);
+  1302→  1302→      }
+  1303→  1303→
+  1304→  1304→      .menu-toggle.active span:nth-child(2) {
+  1305→  1305→        opacity: 0;
+  1306→  1306→      }
+  1307→  1307→
+  1308→  1308→      .menu-toggle.active span:nth-child(3) {
+  1309→  1309→        transform: translateY(-9px) rotate(-45deg);
+  1310→  1310→      }
+  1311→  1311→
+  1312→  1312→      /* Sections paddings */
+  1313→  1313→      section {
+  1314→  1314→        padding: 8rem 6vw;
+  1315→  1315→      }
+  1316→  1316→
+  1317→  1317→      /* About columns stack */
+  1318→  1318→      .about-grid {
+  1319→  1319→        grid-template-columns: 1fr;
+  1320→  1320→        gap: 4rem;
+  1321→  1321→      }
+  1322→  1322→      
+  1323→  1323→      .about-content {
+  1324→  1324→        order: 2;
+  1325→  1325→      }
+  1326→  1326→
+  1327→  1327→      .about-img-container {
+  1328→  1328→        order: 1;
+  1329→  1329→      }
+  1330→  1330→
+  1331→  1331→      /* Artist columns stack */
+  1332→  1332→      .artist-grid, 
+  1333→  1333→      .artist-grid.mirrored {
+  1334→  1334→        grid-template-columns: 1fr;
+  1335→  1335→        display: flex;
+  1336→  1336→        flex-direction: column;
+  1337→  1337→      }
+  1338→  1338→
+  1339→  1339→      .artist-img-wrapper {
+  1340→  1340→        height: 60vh;
+  1341→  1341→        min-height: 450px;
+  1342→  1342→        order: 1;
+  1343→  1343→        border-left: none;
+  1344→  1344→        border-right: none;
+  1345→  1345→        border-bottom: 1px solid var(--border-color);
+  1346→  1346→      }
+  1347→  1347→
+  1348→  1348→      .artist-grid.mirrored .artist-img-wrapper {
+  1349→  1349→        border-right: none;
+  1350→  1350→        border-bottom: 1px solid var(--border-color);
+  1351→  1351→      }
+  1352→  1352→
+  1353→  1353→      .artist-content {
+  1354→  1354→        order: 2;
+  1355→  1355→        padding: 6rem 6vw;
+  1356→  1356→      }
+  1357→  1357→
+  1358→  1358→      /* Together section */
+  1359→  1359→      .together-section {
+  1360→  1360→        padding: 8rem 6vw;
+  1361→  1361→      }
+  1362→  1362→
+  1363→  1363→      /* Gallery columns */
+  1364→  1364→      .gallery-grid {
+  1365→  1365→        column-count: 2;
+  1366→  1366→        column-gap: 1.5rem;
+  1367→  1367→      }
+  1368→  1368→      
+  1369→  1369→      .gallery-item {
+  1370→  1370→        margin-bottom: 1.5rem;
+  1371→  1371→      }
+  1372→  1372→    }
+  1373→  1373→
+  1374→  1374→    @media (max-width: 768px) {
+  1375→  1375→      .hero-buttons {
+  1376→  1376→        flex-direction: column;
+  1377→  1377→        width: 100%;
+  1378→  1378→        max-width: 350px;
+  1379→  1379→        margin: 0 auto;
+  1380→  1380→      }
+  1381→  1381→
+  1382→  1382→      .ghost-btn {
+  1383→  1383→        width: 100%;
+  1384→  1384→        justify-content: center;
+  1385→  1385→      }
+  1386→  1386→
+  1387→  1387→      .collab-card {
+  1388→  1388→        flex-direction: column;
+  1389→  1389→        align-items: flex-start;
+  1390→  1390→        gap: 1.5rem;
+  1391→  1391→        padding: 2rem;
+  1392→  1392→      }
+  1393→  1393→
+  1394→  1394→      .collab-icon {
+  1395→  1395→        align-self: flex-end;
+  1396→  1396→      }
+  1397→  1397→
+  1398→  1398→      .footer {
+  1399→  1399→        flex-direction: column;
+  1400→  1400→        text-align: center;
+  1401→  1401→        align-items: center;
+  1402→  1402→        padding: 5rem 6vw;
+  1403→  1403→      }
+  1404→  1404→    }
+  1405→  1405→
+  1406→  1406→    @media (max-width: 576px) {
+  1407→  1407→      .gallery-grid {
+  1408→  1408→        column-count: 1;
+  1409→  1409→      }
+  1410→  1410→    }
+  1411→  1411→  </style>
+  1412→  1412→</head>
+  1413→  1413→<body>
+  1414→  1414→
+  1415→  1415→  <!-- Custom Cursor -->
+  1416→  1416→  <div class="custom-cursor"></div>
+  1417→  1417→
+  1418→  1418→  <!-- Loader -->
+  1419→  1419→  <div id="preloader">
+  1420→  1420→    <div class="preloader-content">
+  1421→  1421→      <div class="preloader-title">GENOTSYD × GALIXXSS</div>
+  1422→  1422→    </div>
+  1423→  1423→  </div>
+  1424→  1424→
+  1425→  1425→  <!-- Navigation -->
+  1426→  1426→  <nav class="navbar">
+  1427→  1427→    <span class="secret-trigger" id="secret-trigger">×</span>
+  1428→  1428→    <a href="#home" class="nav-brand">G<span>×</span>G</a>
+  1429→  1429→    <button class="menu-toggle" aria-label="Toggle navigation">
+  1430→  1430→      <span></span>
+  1431→  1431→      <span></span>
+  1432→  1432→      <span></span>
+  1433→  1433→    </button>
+  1434→  1434→    <ul class="nav-links">
+  1435→  1435→      <li><a href="#home" class="active">Главная</a></li>
+  1436→  1436→      <li><a href="#about">О нас</a></li>
+  1437→  1437→      <li><a href="#genotsyd">Genotsyd</a></li>
+  1438→  1438→      <li><a href="#galixxss">galixxss</a></li>
+  1439→  1439→      <li><a href="#together">Вместе</a></li>
+  1440→  1440→      <li><a href="#gallery">Галерея</a></li>
+  1441→  1441→    </ul>
+  1442→  1442→  </nav>
+  1443→  1443→
+  1444→  1444→  <!-- Hero Section -->
+  1445→  1445→  <header id="home" class="hero">
+  1446→  1446→    <div class="hero-bg-container">
+  1447→  1447→      <div class="hero-bg"></div>
+  1448→  1448→    </div>
+  1449→  1449→    <div class="hero-overlay"></div>
+  1450→  1450→    <div class="hero-content">
+  1451→  1451→      <h1 class="hero-title reveal-el">GENOTSYD × GALIXXSS</h1>
+  1452→  1452→      <div class="hero-subtitle reveal-el delay-1">ШКОЛЬНЫЙ АНДЕГРАУНД</div>
+  1453→  1453→      <div class="hero-buttons reveal-el delay-2">
+  1454→  1454→        <a href="https://soundcloud.com/genotsyd" target="_blank" rel="noopener" class="ghost-btn">
+  1455→  1455→          ↗ GENOTSYD ON SOUNDCLOUD
+  1456→  1456→        </a>
+  1457→  1457→        <a href="https://soundcloud.com/dumpling21" target="_blank" rel="noopener" class="ghost-btn">
+  1458→  1458→          ↗ GALIXXSS ON SOUNDCLOUD
+  1459→  1459→        </a>
+  1460→  1460→      </div>
+  1461→  1461→    </div>
+  1462→  1462→    <a href="#about" class="scroll-down" aria-label="Scroll to next section">
+  1463→  1463→      <span class="scroll-down-label">скролл</span>
+  1464→  1464→      <div class="scroll-down-line"></div>
+  1465→  1465→    </a>
+  1466→  1466→  </header>
+  1467→  1467→
+  1468→  1468→  <!-- About Us Section -->
+  1469→  1469→  <section id="about">
+  1470→  1470→    <div class="about-grid">
+  1471→  1471→      <div class="about-img-container reveal-el">
+  1472→  1472→        <img src="https://narthehunter1337.github.io/genolixxss/photo2.jpg" alt="GENOTSYD × GALIXXSS" class="about-img">
+  1473→  1473→      </div>
+  1474→  1474→      <div class="about-content">
+  1475→  1475→        <span class="section-label reveal-el">О НАС — 2026</span>
+  1476→  1476→        <h2 class="section-title reveal-el delay-1">Два мира.<br>Один круг.</h2>
+  1477→  1477→        <p class="about-text reveal-el delay-2">
+  1478→  1478→          Genotsyd и galixxss — два молодых русскоязычных андеграунд-исполнителя из одной школы. Их музыка — честный голос поколения, для которого школа, друзья, первые поцелуи и ночные прогулки — не абстракция, а каждый день. Агрессия и нежность. Бунт и романтика. Два мира, один круг.
+  1479→  1479→        </p>
+  1480→  1480→      </div>
+  1481→  1481→    </div>
+  1482→  1482→  </section>
+  1483→  1483→
+  1484→  1484→  <!-- Genotsyd Section -->
+  1485→  1485→  <section id="genotsyd" class="artist-section">
+  1486→  1486→    <div class="artist-grid">
+  1487→  1487→      <div class="artist-content">
+  1488→  1488→        <span class="section-label reveal-el">ИСПОЛНИТЕЛЬ №01</span>
+  1489→  1489→        <h2 class="section-title reveal-el delay-1">GENOTSYD</h2>
+  1490→  1490→        <p class="artist-description reveal-el delay-2">
+  1491→  1491→          Школьный бунтарь с тату-фильтрами, розами на шее и надписями на лице. Короткие, жёсткие треки про первые чувства и подростковую агрессию. Записывает в перерывах между уроками — и собирает прослушивания.
+  1492→  1492→        </p>
+  1493→  1493→        
+  1494→  1494→        <div class="tracklist reveal-el delay-3">
+  1495→  1495→          <div class="track-item" onclick="window.open('https://soundcloud.com/genotsyd', '_blank')">
+  1496→  1496→            <div class="track-left">
+  1497→  1497→              <span class="track-num">01</span>
+  1498→  1498→              <span class="track-title">ТЫ МОЯ</span>
+  1499→  1499→            </div>
+  1500→  1500→            <span class="track-action">Слушать ↗</span>
+  1501→  1501→          </div>
+  1502→  1502→          <div class="track-item" onclick="window.open('https://soundcloud.com/genotsyd', '_blank')">
+  1503→  1503→            <div class="track-left">
+  1504→  1504→              <span class="track-num">02</span>
+  1505→  1505→              <span class="track-title">Пустяки <span class="track-feat">— feat. DEFENXCS</span></span>
+  1506→  1506→            </div>
+  1507→  1507→            <span class="track-action">Слушать ↗</span>
+  1508→  1508→          </div>
+  1509→  1509→          <div class="track-item" onclick="window.open('https://soundcloud.com/genotsyd', '_blank')">
+  1510→  1510→            <div class="track-left">
+  1511→  1511→              <span class="track-num">03</span>
+  1512→  1512→              <span class="track-title">УБИВАЮ</span>
+  1513→  1513→            </div>
+  1514→  1514→            <span class="track-action">Слушать ↗</span>
+  1515→  1515→          </div>
+  1516→  1516→          <div class="track-item" onclick="window.open('https://soundcloud.com/genotsyd', '_blank')">
+  1517→  1517→            <div class="track-left">
+  1518→  1518→              <span class="track-num">04</span>
+  1519→  1519→              <span class="track-title">КОГДА ВИЖУ ТЕБЯ <span class="track-feat">— feat. galixxss</span></span>
+  1520→  1520→            </div>
+  1521→  1521→            <span class="track-action">Слушать ↗</span>
+  1522→  1522→          </div>
+  1523→  1523→          <div class="track-item" onclick="window.open('https://soundcloud.com/genotsyd', '_blank')">
+  1524→  1524→            <div class="track-left">
+  1525→  1525→              <span class="track-num">05</span>
+  1526→  1526→              <span class="track-title">КРОВЬ ИЗ УШЕЙ (СПИД2)</span>
+  1527→  1527→            </div>
+  1528→  1528→            <span class="track-action">Слушать ↗</span>
+  1529→  1529→          </div>
+  1530→  1530→          <div class="track-item" onclick="window.open('https://soundcloud.com/genotsyd', '_blank')">
+  1531→  1531→            <div class="track-left">
+  1532→  1532→              <span class="track-num">06</span>
+  1533→  1533→              <span class="track-title">ЧАЙНИК</span>
+  1534→  1534→            </div>
+  1535→  1535→            <span class="track-action">Слушать ↗</span>
+  1536→  1536→          </div>
+  1537→  1537→        </div>
+  1538→  1538→
+  1539→  1539→        <div class="reveal-el delay-4">
+  1540→  1540→          <a href="https://soundcloud.com/genotsyd" target="_blank" rel="noopener" class="ghost-btn">
+  1541→  1541→            СЛУШАТЬ НА SOUNDCLOUD ↗
+  1542→  1542→          </a>
+  1543→  1543→        </div>
+  1544→  1544→      </div>
+  1545→  1545→      
+  1546→  1546→      <div class="artist-img-wrapper reveal-el">
+  1547→  1547→        <img src="https://narthehunter1337.github.io/genolixxss/photo3.jpg" alt="Genotsyd" class="artist-img">
+  1548→  1548→      </div>
+  1549→  1549→    </div>
+  1550→  1550→  </section>
+  1551→  1551→
+  1552→  1552→  <!-- galixxss Section -->
+  1553→  1553→  <section id="galixxss" class="artist-section">
+  1554→  1554→    <div class="artist-grid mirrored">
+  1555→  1555→      <div class="artist-content">
+  1556→  1556→        <span class="section-label reveal-el">ИСПОЛНИТЕЛЬ №02</span>
+  1557→  1557→        <h2 class="section-title reveal-el delay-1">GALIXXSS</h2>
+  1558→  1558→        <p class="artist-description reveal-el delay-2">
+  1559→  1559→          Лоуфай-звучание, меланхолия и подростковая романтика. Треки, которые звучат как ночные прогулки и невысказанные чувства.
+  1560→  1560→        </p>
+  1561→  1561→        
+  1562→  1562→        <div class="tracklist reveal-el delay-3">
+  1563→  1563→          <div class="track-item" onclick="window.open('https://soundcloud.com/dumpling21', '_blank')">
+  1564→  1564→            <div class="track-left">
+  1565→  1565→              <span class="track-num">01</span>
+  1566→  1566→              <span class="track-title">поцелуй <span class="track-feat">— feat. Genotsyd</span></span>
+  1567→  1567→            </div>
+  1568→  1568→            <span class="track-action">Слушать ↗</span>
+  1569→  1569→          </div>
+  1570→  1570→          <div class="track-item" onclick="window.open('https://soundcloud.com/dumpling21', '_blank')">
+  1571→  1571→            <div class="track-left">
+  1572→  1572→              <span class="track-num">02</span>
+  1573→  1573→              <span class="track-title">фонарь <span class="track-feat">— feat. Genotsyd</span></span>
+  1574→  1574→            </div>
+  1575→  1575→            <span class="track-action">Слушать ↗</span>
+  1576→  1576→          </div>
+  1577→  1577→          <div class="track-item" onclick="window.open('https://soundcloud.com/dumpling21', '_blank')">
+  1578→  1578→            <div class="track-left">
+  1579→  1579→              <span class="track-num">03</span>
+  1580→  1580→              <span class="track-title">СПИД2</span>
+  1581→  1581→            </div>
+  1582→  1582→            <span class="track-action">Слушать ↗</span>
+  1583→  1583→          </div>
+  1584→  1584→          <div class="track-item" onclick="window.open('https://soundcloud.com/dumpling21', '_blank')">
+  1585→  1585→            <div class="track-left">
+  1586→  1586→              <span class="track-num">04</span>
+  1587→  1587→              <span class="track-title">спид1.mp3</span>
+  1588→  1588→            </div>
+  1589→  1589→            <span class="track-action">Слушать ↗</span>
+  1590→  1590→          </div>
+  1591→  1591→        </div>
+  1592→  1592→
+  1593→  1593→        <div class="reveal-el delay-4">
+  1594→  1594→          <a href="https://soundcloud.com/dumpling21" target="_blank" rel="noopener" class="ghost-btn">
+  1595→  1595→            СЛУШАТЬ НА SOUNDCLOUD ↗
+  1596→  1596→          </a>
+  1597→  1597→        </div>
+  1598→  1598→      </div>
+  1599→  1599→      
+  1600→  1600→      <div class="artist-img-wrapper reveal-el">
+  1601→  1601→        <img src="https://narthehunter1337.github.io/genolixxss/photo4.jpg" alt="galixxss" class="artist-img">
+  1602→  1602→      </div>
+  1603→  1603→    </div>
+  1604→  1604→  </section>
+  1605→  1605→
+  1606→  1606→  <!-- Together Section -->
+  1607→  1607→  <section id="together" class="together-section">
+  1608→  1608→    <div class="together-bg-container">
+  1609→  1609→      <div class="together-bg"></div>
+  1610→  1610→    </div>
+  1611→  1611→    <div class="together-overlay"></div>
+  1612→  1612→    <div class="together-content">
+  1613→  1613→      <span class="section-label reveal-el">СОВМЕСТНО</span>
+  1614→  1614→      <h2 class="section-title reveal-el delay-1">ВМЕСТЕ</h2>
+  1615→  1615→      <p class="together-subtitle reveal-el delay-2">Когда два мира сталкиваются — получается честно</p>
+  1616→  1616→      
+  1617→  1617→      <div class="collab-cards">
+  1618→  1618→        <div class="collab-card reveal-el" onclick="window.open('https://soundcloud.com/genotsyd', '_blank')">
+  1619→  1619→          <div class="collab-track-info">
+  1620→  1620→            <h3 class="collab-title">КОГДА ВИЖУ ТЕБЯ</h3>
+  1621→  1621→            <span class="collab-artist">Genotsyd feat. galixxss</span>
+  1622→  1622→          </div>
+  1623→  1623→          <div class="collab-icon">↗</div>
+  1624→  1624→        </div>
+  1625→  1625→        
+  1626→  1626→        <div class="collab-card reveal-el delay-1" onclick="window.open('https://soundcloud.com/dumpling21', '_blank')">
+  1627→  1627→          <div class="collab-track-info">
+  1628→  1628→            <h3 class="collab-title">поцелуй</h3>
+  1629→  1629→            <span class="collab-artist">galixxss feat. Genotsyd</span>
+  1630→  1630→          </div>
+  1631→  1631→          <div class="collab-icon">↗</div>
+  1632→  1632→        </div>
+  1633→  1633→        
+  1634→  1634→        <div class="collab-card reveal-el delay-2" onclick="window.open('https://soundcloud.com/dumpling21', '_blank')">
+  1635→  1635→          <div class="collab-track-info">
+  1636→  1636→            <h3 class="collab-title">фонарь</h3>
+  1637→  1637→            <span class="collab-artist">galixxss feat. Genotsyd</span>
+  1638→  1638→          </div>
+  1639→  1639→          <div class="collab-icon">↗</div>
+  1640→  1640→        </div>
+  1641→  1641→      </div>
+  1642→  1642→    </div>
+  1643→  1643→  </section>
+  1644→  1644→
+  1645→  1645→  <!-- Gallery Section -->
+  1646→  1646→  <section id="gallery">
+  1647→  1647→    <span class="section-label reveal-el">АТМОСФЕРА</span>
+  1648→  1648→    <h2 class="section-title reveal-el delay-1">ГАЛЕРЕЯ</h2>
+  1649→  1649→    
+  1650→  1650→    <div class="gallery-grid reveal-el delay-2">
+  1651→  1651→      <div class="gallery-item">
+  1652→  1652→        <img src="https://narthehunter1337.github.io/genolixxss/photo1.jpg" alt="GENOTSYD × GALIXXSS #1">
+  1653→  1653→        <div class="gallery-overlay"></div>
+  1654→  1654→      </div>
+  1655→  1655→      <div class="gallery-item">
+  1656→  1656→        <img src="https://narthehunter1337.github.io/genolixxss/photo2.jpg" alt="GENOTSYD × GALIXXSS #2">
+  1657→  1657→        <div class="gallery-overlay"></div>
+  1658→  1658→      </div>
+  1659→  1659→      <div class="gallery-item">
+  1660→  1660→        <img src="https://narthehunter1337.github.io/genolixxss/photo3.jpg" alt="GENOTSYD × GALIXXSS #3">
+  1661→  1661→        <div class="gallery-overlay"></div>
+  1662→  1662→      </div>
+  1663→  1663→      <div class="gallery-item">
+  1664→  1664→        <img src="https://narthehunter1337.github.io/genolixxss/photo4.jpg" alt="GENOTSYD × GALIXXSS #4">
+  1665→  1665→        <div class="gallery-overlay"></div>
+  1666→  1666→      </div>
+  1667→  1667→      <div class="gallery-item">
+  1668→  1668→        <img src="https://narthehunter1337.github.io/genolixxss/photo5.jpg" alt="GENOTSYD × GALIXXSS #5">
+  1669→  1669→        <div class="gallery-overlay"></div>
+  1670→  1670→      </div>
+  1671→  1671→      <div class="gallery-item">
+  1672→  1672→        <img src="https://narthehunter1337.github.io/genolixxss/photo6.jpg" alt="GENOTSYD × GALIXXSS #6">
+  1673→  1673→        <div class="gallery-overlay"></div>
+  1674→  1674→      </div>
+  1675→  1675→    </div>
+  1676→  1676→  </section>
+  1677→  1677→
+  1678→  1678→  <!-- Custom Lightbox -->
+  1679→  1679→  <div id="lightbox" class="lightbox">
+  1680→  1680→    <div class="lightbox-content">
+  1681→  1681→      <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+  1682→  1682→      <img src="" alt="View Image" class="lightbox-img">
+  1683→  1683→    </div>
+  1684→  1684→  </div>
+  1685→  1685→
+  1686→  1686→  <!-- Secret Modal -->
+  1687→  1687→  <div id="secret-modal" class="secret-modal">
+  1688→  1688→    <div class="secret-modal-content">
+  1689→  1689→      <button class="secret-modal-close" id="secret-modal-close">&times;</button>
+  1690→  1690→      <h2 class="secret-modal-title">ACCESS RESTRICTED</h2>
+  1691→  1691→      <form id="secret-form" class="secret-form">
+  1692→  1692→        <input type="password" id="secret-input" class="secret-input" placeholder="ENTER ACCESS CODE" autocomplete="off">
+  1693→  1693→        <button type="submit" class="secret-confirm-btn">CONFIRM</button>
+  1694→  1694→      </form>
+  1695→  1695→    </div>
+  1696→  1696→  </div>
+  1697→  1697→
+  1698→  1698→  <!-- Secret Page -->
+  1699→  1699→  <div id="secret-page" class="secret-page">
+  1700→  1700→    <div class="secret-content-wrapper">
+  1701→  1701→      <h1 class="secret-title-glitch" data-text="YOU FOUND IT">YOU FOUND IT</h1>
+  1702→  1702→      <p class="secret-subheading">This is where the real stuff lives.</p>
+  1703→  1703→      
+  1704→  1704→      <div class="secret-main-content">
+  1705→  1705→        <div class="secret-message-box">
+  1706→  1706→          <p>Мы пишем эти строки в пустых классах, когда свет уже выключен, а шум перемен давно затих. Музыка — единственный способ дышать в мире готовых ответов и фальшивых улыбок.</p>
+  1707→  1707→          <p>Два пути, пересекшиеся на задней парте. Здесь нет цензуры. Здесь нет правил.</p>
+  1708→  1708→          <p>Вы нашли эту комнату, значит, вы чувствуете то же самое.</p>
+  1709→  1709→        </div>
+  1710→  1710→        <div class="secret-photos-grid">
+  1711→  1711→          <div class="secret-photo-item">
+  1712→  1712→            <img src="https://narthehunter1337.github.io/genolixxss/photo5.jpg" alt="Unreleased session" class="secret-raw-img">
+  1713→  1713→            <span class="secret-photo-caption">PHOTO_05 // RAW // UNFILTERED</span>
+  1714→  1714→          </div>
+  1715→  1715→        </div>
+  1716→  1716→      </div>
+  1717→  1717→    </div>
+  1718→  1718→    
+  1719→  1719→    <div class="secret-footer">
+  1720→  1720→      <a href="#" id="secret-back-btn" class="secret-back-link">← BACK</a>
+  1721→  1721→    </div>
+  1722→  1722→  </div>
+  1723→  1723→
+  1724→  1724→  <!-- Footer -->
+  1725→  1725→  <footer class="footer">
+  1726→  1726→    <div class="footer-left">
+  1727→  1727→      GENOTSYD <span>×</span> GALIXXSS — 2026
+  1728→  1728→    </div>
+  1729→  1729→    <div class="footer-center">
+  1730→  1730→      MADE WITH SOUL BY NARTHEHUNTER
+  1731→  1731→    </div>
+  1732→  1732→    <div class="footer-right">
+  1733→  1733→      <a href="https://soundcloud.com/narthehunter" target="_blank" rel="noopener" class="footer-link" aria-label="SoundCloud">
+  1734→  1734→        <!-- SoundCloud Icon -->
+  1735→  1735→        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  1736→  1736→          <path d="M11.562 9.07a1.503 1.503 0 0 1-1.062-1.438V16.5h1.5v-7.14a.439.439 0 0 1-.438-.29zM1.5 13.5h.75v3h-.75zm1.5-1.125h.75v4.125h-.75zm1.5-1.125h.75V16.5h-.75zm1.5-1.125h.75V16.5h-.75zm1.5-.75h.75V16.5h-.75zm1.5-.75h.75V16.5h-.75zm1.5 0h.75V16.5h-.75zm1.5-1.5a.75.75 0 0 1 .75.75V16.5h-1.5V9.875a.75.75 0 0 1 .75-.75zm11.25 1.5c-1.608 0-2.906 1.298-2.906 2.906V16.5H22.5A1.5 1.5 0 0 0 24 15c0-2.438-1.562-4.125-4.125-4.125-.188 0-.375.019-.562.056-.47-.843-1.37-1.431-2.413-1.431a2.804 2.804 0 0 0-2.656 1.875c-.328-.15-.694-.25-1.063-.25a2.235 2.235 0 0 0-1.687.75z"/>
+  1737→  1737→        </svg>
+  1738→  1738→      </a>
+  1739→  1739→      <a href="https://t.me/uralslons" target="_blank" rel="noopener" class="footer-link" aria-label="Telegram">
+  1740→  1740→        <!-- Telegram Icon -->
+  1741→  1741→        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  1742→  1742→          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.25-5.54 3.69-.52.36-1 .53-1.42.52-.47-.01-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.35-.49.97-.74 3.79-1.65 6.32-2.73 7.59-3.25 3.61-1.48 4.36-1.74 4.85-1.75.11 0 .35.03.51.16.13.12.17.29.19.41z"/>
+  1743→  1743→        </svg>
+  1744→  1744→      </a>
+  1745→  1745→    </div>
+  1746→  1746→  </footer>
+  1747→  1747→
+  1748→  1748→  <!-- ==========================================
+  1749→  1749→       JAVASCRIPT LOGIC
+  1750→  1750→       ========================================== -->
+  1751→  1751→  <script>
+  1752→  1752→    document.addEventListener('DOMContentLoaded', () => {
+  1753→  1753→      
+  1754→  1754→      // 1. PRELOADER FADE OUT
+  1755→  1755→      setTimeout(() => {
+  1756→  1756→        const preloader = document.getElementById('preloader');
+  1757→  1757→        if (preloader) {
+  1758→  1758→          preloader.classList.add('fade-out');
+  1759→  1759→        }
+  1760→  1760→      }, 1500);
+  1761→  1761→
+  1762→  1762→      // 2. STICKY NAVBAR BACKGROUND ON SCROLL
+  1763→  1763→      const navbar = document.querySelector('.navbar');
+  1764→  1764→      window.addEventListener('scroll', () => {
+  1765→  1765→        if (window.scrollY > 50) {
+  1766→  1766→          navbar.classList.add('scrolled');
+  1767→  1767→        } else {
+  1768→  1768→          navbar.classList.remove('scrolled');
+  1769→  1769→        }
+  1770→  1770→      });
+  1771→  1771→
+  1772→  1772→      // 3. PARALLAX EFFECT ON HERO BACKGROUND
+  1773→  1773→      const heroBgContainer = document.querySelector('.hero-bg-container');
+  1774→  1774→      window.addEventListener('scroll', () => {
+  1775→  1775→        const scrolled = window.pageYOffset;
+  1776→  1776→        if (heroBgContainer) {
+  1777→  1777→          // Adjust translateY slightly based on scroll distance
+  1778→  1778→          heroBgContainer.style.transform = `translate3d(0, ${scrolled * 0.35}px, 0)`;
+  1779→  1779→        }
+  1780→  1780→      });
+  1781→  1781→
+  1782→  1782→      // 4. MOBILE MENU DRAWER
+  1783→  1783→      const menuToggle = document.querySelector('.menu-toggle');
+  1784→  1784→      const navLinks = document.querySelector('.nav-links');
+  1785→  1785→      const navLinksItems = document.querySelectorAll('.nav-links a');
+  1786→  1786→
+  1787→  1787→      menuToggle.addEventListener('click', () => {
+  1788→  1788→        menuToggle.classList.toggle('active');
+  1789→  1789→        navLinks.classList.toggle('active');
+  1790→  1790→        document.body.classList.toggle('menu-open');
+  1791→  1791→      });
+  1792→  1792→
+  1793→  1793→      navLinksItems.forEach(link => {
+  1794→  1794→        link.addEventListener('click', () => {
+  1795→  1795→          menuToggle.classList.remove('active');
+  1796→  1796→          navLinks.classList.remove('active');
+  1797→  1797→          document.body.classList.remove('menu-open');
+  1798→  1798→        });
+  1799→  1799→      });
+  1800→  1800→
+  1801→  1801→      // 5. CUSTOM CURSOR WITH LERP (LINEAR INTERPOLATION)
+  1802→  1802→      const cursor = document.querySelector('.custom-cursor');
+  1803→  1803→      let mouseX = 0, mouseY = 0;
+  1804→  1804→      let cursorX = 0, cursorY = 0;
+  1805→  1805→      let hasMoved = false;
+  1806→  1806→
+  1807→  1807→      document.addEventListener('mousemove', (e) => {
+  1808→  1808→        mouseX = e.clientX;
+  1809→  1809→        mouseY = e.clientY;
+  1810→  1810→        if (!hasMoved) {
+  1811→  1811→          cursor.classList.add('visible');
+  1812→  1812→          cursorX = mouseX;
+  1813→  1813→          cursorY = mouseY;
+  1814→  1814→          hasMoved = true;
+  1815→  1815→        }
+  1816→  1816→      });
+  1817→  1817→
+  1818→  1818→      function tickCursor() {
+  1819→  1819→        if (hasMoved) {
+  1820→  1820→          // Lerp formula: current + (target - current) * factor
+  1821→  1821→          cursorX += (mouseX - cursorX) * 0.15;
+  1822→  1822→          cursorY += (mouseY - cursorY) * 0.15;
+  1823→  1823→          cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+  1824→  1824→        }
+  1825→  1825→        requestAnimationFrame(tickCursor);
+  1826→  1826→      }
+  1827→  1827→      requestAnimationFrame(tickCursor);
+  1828→  1828→
+  1829→  1829→      // Add hovered styling to cursor when over interactive tags
+  1830→  1830→      document.addEventListener('mouseover', (e) => {
+  1831→  1831→        if (e.target.closest('a, button, .gallery-item, .track-item, .collab-card, [role="button"]')) {
+  1832→  1832→          cursor.classList.add('hovered');
+  1833→  1833→        } else {
+  1834→  1834→          cursor.classList.remove('hovered');
+  1835→  1835→        }
+  1836→  1836→      });
+  1837→  1837→
+  1838→  1838→      // 6. SCROLL ANIMATIONS (INTERSECTION OBSERVER)
+  1839→  1839→      const observerOptions = {
+  1840→  1840→        root: null,
+  1841→  1841→        threshold: 0.05,
+  1842→  1842→        rootMargin: '0px 0px -60px 0px'
+  1843→  1843→      };
+  1844→  1844→
+  1845→  1845→      const scrollRevealObserver = new IntersectionObserver((entries, observer) => {
+  1846→  1846→        entries.forEach(entry => {
+  1847→  1847→          if (entry.isIntersecting) {
+  1848→  1848→            entry.target.classList.add('visible');
+  1849→  1849→            observer.unobserve(entry.target);
+  1850→  1850→          }
+  1851→  1851→        });
+  1852→  1852→      }, observerOptions);
+  1853→  1853→
+  1854→  1854→      document.querySelectorAll('.reveal-el').forEach(el => {
+  1855→  1855→        scrollRevealObserver.observe(el);
+  1856→  1856→      });
+  1857→  1857→
+  1858→  1858→      // 7. SCROLL SPY (ACTIVE LINK NAVIGATION HIGHLIGHT)
+  1859→  1859→      const sections = document.querySelectorAll('section, header');
+  1860→  1860→      const spyOptions = {
+  1861→  1861→        root: null,
+  1862→  1862→        threshold: 0.1,
+  1863→  1863→        rootMargin: '-20% 0px -50% 0px'
+  1864→  1864→      };
+  1865→  1865→
+  1866→  1866→      const spyObserver = new IntersectionObserver((entries) => {
+  1867→  1867→        entries.forEach(entry => {
+  1868→  1868→          if (entry.isIntersecting) {
+  1869→  1869→            const id = entry.target.getAttribute('id');
+  1870→  1870→            navLinksItems.forEach(item => {
+  1871→  1871→              if (item.getAttribute('href') === `#${id}`) {
+  1872→  1872→                item.classList.add('active');
+  1873→  1873→              } else {
+  1874→  1874→                item.classList.remove('active');
+  1875→  1875→              }
+  1876→  1876→            });
+  1877→  1877→          }
+  1878→  1878→        });
+  1879→  1879→      }, spyOptions);
+  1880→  1880→
+  1881→  1881→      sections.forEach(sec => {
+  1882→  1882→        if (sec.getAttribute('id')) {
+  1883→  1883→          spyObserver.observe(sec);
+  1884→  1884→        }
+  1885→  1885→      });
+  1886→  1886→
+  1887→  1887→      // 8. CUSTOM LIGHTBOX (NO LIBRARIES)
+  1888→  1888→      const galleryItems = document.querySelectorAll('.gallery-item');
+  1889→  1889→      const lightbox = document.getElementById('lightbox');
+  1890→  1890→      const lightboxImg = lightbox.querySelector('.lightbox-img');
+  1891→  1891→      const lightboxClose = lightbox.querySelector('.lightbox-close');
+  1892→  1892→
+  1893→  1893→      galleryItems.forEach(item => {
+  1894→  1894→        item.addEventListener('click', () => {
+  1895→  1895→          const img = item.querySelector('img');
+  1896→  1896→          if (img) {
+  1897→  1897→            lightboxImg.src = img.src;
+  1898→  1898→            lightboxImg.alt = img.alt;
+  1899→  1899→            lightbox.classList.add('active');
+  1900→  1900→            document.body.style.overflow = 'hidden';
+  1901→  1901→          }
+  1902→  1902→        });
+  1903→  1903→      });
+  1904→  1904→
+  1905→  1905→      function closeLightbox() {
+  1906→  1906→        lightbox.classList.remove('active');
+  1907→  1907→        document.body.style.overflow = '';
+  1908→  1908→        setTimeout(() => {
+  1909→  1909→          lightboxImg.src = '';
+  1910→  1910→        }, 400);
+  1911→  1911→      }
+  1912→  1912→
+  1913→  1913→      lightboxClose.addEventListener('click', closeLightbox);
+  1914→  1914→      lightbox.addEventListener('click', (e) => {
+  1915→  1915→        if (e.target === lightbox) {
+  1916→  1916→          closeLightbox();
+  1917→  1917→        }
+  1918→  1918→      });
+  1919→  1919→
+  1920→  1920→      document.addEventListener('keydown', (e) => {
+  1921→  1921→        if (e.key === 'Escape') {
+  1922→  1922→          closeLightbox();
+  1923→  1923→        }
+  1924→  1924→      });
+  1925→  1925→
+  1926→  1926→      // 9. SECRET EASTER EGG LOGIC
+  1927→  1927→      let secretClicks = 0;
+  1928→  1928→      let secretTimer = null;
+  1929→  1929→      const secretTrigger = document.getElementById('secret-trigger');
+  1930→  1930→      const secretModal = document.getElementById('secret-modal');
+  1931→  1931→      const secretModalClose = document.getElementById('secret-modal-close');
+  1932→  1932→      const secretForm = document.getElementById('secret-form');
+  1933→  1933→      const secretInput = document.getElementById('secret-input');
+  1934→  1934→      const secretPage = document.getElementById('secret-page');
+  1935→  1935→      const secretBackBtn = document.getElementById('secret-back-btn');
+  1936→  1936→
+  1937→  1937→      if (secretTrigger) {
+  1938→  1938→        secretTrigger.addEventListener('click', () => {
+  1939→  1939→          secretClicks++;
+  1940→  1940→          if (secretTimer) clearTimeout(secretTimer);
+  1941→  1941→          secretTimer = setTimeout(() => {
+  1942→  1942→            secretClicks = 0;
+  1943→  1943→          }, 3000);
+  1944→  1944→          if (secretClicks >= 5) {
+  1945→  1945→            secretClicks = 0;
+  1946→  1946→            clearTimeout(secretTimer);
+  1947→  1947→            openSecretModal();
+  1948→  1948→          }
+  1949→  1949→        });
+  1950→  1950→      }
+  1951→  1951→
+  1952→  1952→      function openSecretModal() {
+  1953→  1953→        if (secretModal && secretInput) {
+  1954→  1954→          secretModal.classList.add('active');
+  1955→  1955→          secretInput.focus();
+  1956→  1956→          document.body.style.overflow = 'hidden';
+  1957→  1957→        }
+  1958→  1958→      }
+  1959→  1959→
+  1960→  1960→      function closeSecretModal() {
+  1961→  1961→        if (secretModal && secretInput) {
+  1962→  1962→          secretModal.classList.remove('active');
+  1963→  1963→          secretInput.value = '';
+  1964→  1964→          document.body.style.overflow = '';
+  1965→  1965→        }
+  1966→  1966→      }
+  1967→  1967→
+  1968→  1968→      if (secretModalClose) {
+  1969→  1969→        secretModalClose.addEventListener('click', closeSecretModal);
+  1970→  1970→      }
+  1971→  1971→
+  1972→  1972→      if (secretModal) {
+  1973→  1973→        secretModal.addEventListener('click', (e) => {
+  1974→  1974→          if (e.target === secretModal) {
+  1975→  1975→            closeSecretModal();
+  1976→  1976→          }
+  1977→  1977→        });
+  1978→  1978→      }
+  1979→  1979→
+  1980→  1980→      if (secretForm) {
+  1981→  1981→        secretForm.addEventListener('submit', (e) => {
+  1982→  1982→          e.preventDefault();
+  1983→  1983→          if (secretInput) {
+  1984→  1984→            const password = secretInput.value.trim().toLowerCase();
+  1985→  1985→            if (password === 'geek') {
+  1986→  1986→              closeSecretModal();
+  1987→  1987→              openSecretPage();
+  1988→  1988→            } else {
+  1989→  1989→              secretInput.classList.add('shake');
+  1990→  1990→              secretInput.value = '';
+  1991→  1991→              setTimeout(() => {
+  1992→  1992→                secretInput.classList.remove('shake');
+  1993→  1993→              }, 400);
+  1994→  1994→            }
+  1995→  1995→          }
+  1996→  1996→        });
+  1997→  1997→      }
+  1998→  1998→
+  1999→  1999→      function openSecretPage() {
+  2000→  2000→        if (secretPage) {
+
+[showing lines 1-2000 of 2002; use offset=2001 with limit to continue reading]
