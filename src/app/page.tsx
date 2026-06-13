@@ -430,10 +430,7 @@ function SecretPage({ onClose }: { onClose: () => void }) {
             { num: '??', name: 'ЖЭЖЭЖЭ', status: 'идея' },
           ].map((t) => (<div key={t.name} className="secret-track-item"><span className="secret-track-num">{t.num}</span><span className="secret-track-name">{t.name}</span><span className={`secret-track-status status-${t.status}`}>{t.status}</span></div>))}</div>
         </motion.div>
-        <motion.div className="secret-message-box" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-          <h2 className="secret-section-title">Послание</h2>
-          <div className="secret-message-text"><p>Если ты здесь — значит, ты один из нас.</p><p>Школа — это временно. Музыка — навсегда.</p><p>Каждый трек — это чья-то история. Может, твоя.</p><p className="secret-message-sig">— G × G</p></div>
-        </motion.div>
+
         <motion.div className="secret-stats" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.7, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
           <h2 className="secret-section-title">Статистика проекта</h2>
           <div className="secret-stats-grid">{[{ v: '14', l: 'треков' }, { v: '4', l: 'совместных' }, { v: '1', l: 'школа' }, { v: '∞', l: 'идей' }].map((s) => (<div key={s.l} className="secret-stat"><span className="secret-stat-value">{s.v}</span><span className="secret-stat-label">{s.l}</span></div>))}</div>
